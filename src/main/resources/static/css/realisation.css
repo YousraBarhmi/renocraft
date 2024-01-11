@@ -1,0 +1,32 @@
+.rea {
+    background-color: #E3E3E3;
+
+}
+
+.rea h2{
+    color: #201F25;
+    font-size: 39px;
+    margin-bottom: 60px;
+    padding-top: 10px;
+    font-family: "Rund Display", sans-serif;
+    text-align: center;
+}
+
+.rea img {
+    height: 250px;
+    width: auto;
+}
+
+.rea .group1 {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin-bottom: 50px;
+}
+
+.rea .group2 {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding-bottom: 50px;
+}

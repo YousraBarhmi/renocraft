@@ -11,4 +11,14 @@ public class RenoCraftController {
     }
 
 
+    @GetMapping ("/signup")
+    public String signUp(){
+        return "signup";
+    }
+
+    @GetMapping ("/signin")
+    public String signIn(){
+        return "signin";
+    }
+
 }
