@@ -5,8 +5,35 @@
     <title>Contact</title>
 </head>
 <body>
-<div id="#contact" th:fragment="contact">
-    <h1>test12</h1>
+<div class="contact" id="contact" th:fragment="contact">
+    <h1 class="ticlair chlen">Contactez-Nous</h1>
+    <div class="information">
+        <div class="imgcontact">
+            <p>Coordonnées de contact</p>
+            <div class="coord1">
+                <div class="icocoord">
+                    <i class="fa-solid fa-location-dot"></i>
+                </div>
+                <div class="coordinfo">
+                    <h3>Notre bureau</h3>
+                    <p>123 rue, Casablanca, MAROC</p>
+                </div>
+            </div>
+        </div>
+        <div class="formu">
+            <form id="form">
+                <p>Posez vos questions ici</p>
+                <input type="email" placeholder="Adresse Email" name="email"/><br/>
+                <input type="text" placeholder="Nom"/><br/>
+                <input type="text" placeholder="Prénom"/><br/>
+                <textarea placeholder="Message"></textarea><br/>
+                <input type="submit" value="Envoyer"/>
+            </form>
+        </div>
+    </div>
+    <div class="retour">
+        <div class="mon"><a th:href="@{'#home'}" class="fleche"><i class="fa-solid fa-arrow-up"></i></a></div>
+    </div>
 </div>
 </body>
 </html>
