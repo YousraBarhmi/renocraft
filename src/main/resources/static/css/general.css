@@ -1,6 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&display=swap');
-/* Couleur Principale : #21434C */
-/* Couleur Secondaire : #CDD1D4 */
+/* Couleur Principale : #201F25 */
+/* Couleur Secondaire : #E3E3E3 */
 
 
 
@@ -23,20 +23,20 @@ body::-webkit-scrollbar {
 }
 
 body::-webkit-scrollbar-track {
-    background: #CDD1D4;
+    background: white;
 }
 
 body::-webkit-scrollbar-track:hover {
-    background: #CDD1D4;
+    background: white;
 
 }
 
 
 body::-webkit-scrollbar-thumb {
-    background-color: #21434C;
+    background-color: #201F25;
 
 }
 
 body::-webkit-scrollbar-thumb:hover {
-    background-color: #21434C;
+    background-color: #201F25;
 }

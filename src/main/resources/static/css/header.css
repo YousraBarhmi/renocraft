@@ -23,8 +23,8 @@
 
 .container .links {
     font-size: 15px;
-    width: 900px;
-    margin-right: 5%;
+    width: 700px;
+    margin-right: 1%;
 }
 
 .container .links ul {
@@ -38,7 +38,7 @@
 
 .container .links .link {
     color: white;
-    font-family: "Rund Display"; /* Changement de police */
+    font-family: "Rund Display", sans-serif; /* Changement de police */
     text-decoration: none;
     padding: 5px 15px;
     border-radius: 25px;
@@ -53,7 +53,11 @@
 }
 
 .container .links .link:hover {
-    color: #201F25; /* Changement de couleur */
-    border-radius: 25px;
+    text-decoration: underline;
+}
+
+.container .links .btn:hover {
+    text-decoration: none;
     background-color: white;
+    color: #201F25;
 }
