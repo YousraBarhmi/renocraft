@@ -12,7 +12,7 @@ public class RenoCraftController {
 
 
     @GetMapping ("/signup")
-    public String signUp(){
+    public String register(){
         return "signup";
     }
 
