@@ -6,6 +6,8 @@ import com.jeeproject.renocraft.entity.Service;
 import com.jeeproject.renocraft.service.ContactService;
 import com.jeeproject.renocraft.service.EmployeurService;
 import com.jeeproject.renocraft.service.ServiceService;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -34,7 +36,11 @@ public class RenoCraftController {
 
     //mapping
     @GetMapping ("/")
-    public String welcomePage(){
+    public String welcomePage(HttpServletRequest request){
+        HttpSession session = request.getSession();
+        if (session != null && session.getAttribute("connexion") == null) {
+            session.setAttribute("connexion", true);
+        }
         return "index";
     }
 
@@ -54,8 +60,25 @@ public class RenoCraftController {
     }
 
     @GetMapping ("/packs")
-    public String packsPage(){
-        return "pack";
+    public String packsPage(HttpServletRequest request){
+        HttpSession session = request.getSession();
+        if (session != null && session.getAttribute("connexion") != null && (boolean) session.getAttribute("connexion")) {
+            return "pack";
+        } else {
+            return "redirect:/signin";
+        }
+    }
+
+    @GetMapping("/logout")
+    public String logout(HttpServletRequest request) {
+        HttpSession session = request.getSession();
+        session.invalidate();
+        return "redirect:/signin";
+    }
+
+    @GetMapping ("/cart")
+    public String cartPage(){
+        return "cart";
     }
 
 
