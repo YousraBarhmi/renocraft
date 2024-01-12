@@ -54,6 +54,23 @@ public class RenoCraftController {
 
 
 
+
+        //mapping
+        @GetMapping("/")
+        public String welcomePage() {
+        /*HttpSession session = request.getSession();
+        if (session != null && session.getAttribute("connexion") == null) {
+            session.setAttribute("connexion", true);
+
+            // Set the userName attribute in the session
+            session.setAttribute("userName", "user");
+        }*/
+
+            return "index";
+        }
+
+
+
     @GetMapping ("/signup")
     public String register(Model model){
         User user=new User();
@@ -61,46 +78,52 @@ public class RenoCraftController {
         return "signup";
     }
 
-    @PostMapping("/registerUser")
-    public String registerUser(@ModelAttribute("user") User user, Model model) {
-        if (service.usernameExists(user.getUsername())) {
-            model.addAttribute("usernameExists", true);
-            return "signup";
-        }
-        service.registerUser(user);
-        return "signin";
-    }
-    @GetMapping ("/success")
-    public String successPage(){
-        return "success";
-    }
 
-    @GetMapping ("/packs")
-    public String packsPage(HttpServletRequest request){
-        HttpSession session = request.getSession();
-        if (session != null && session.getAttribute("connexion") != null && (boolean) session.getAttribute("connexion")) {
-            return "pack";
-        } else {
+        @PostMapping("/registerUser")
+        public String registerUser(@ModelAttribute("user") User user, Model model) {
+            if (service.usernameExists(user.getUsername())) {
+                model.addAttribute("usernameExists", true);
+                return "signup";
+            }
+            service.registerUser(user);
+            return "signin";
+        }
+        @GetMapping ("/success")
+        public String successPage(){
+            return "success";
+        }
+
+        @GetMapping ("/packs")
+        public String packsPage(HttpServletRequest request){
+            HttpSession session = request.getSession();
+            if (session != null && session.getAttribute("connexion") != null && (boolean) session.getAttribute("connexion")) {
+                return "pack";
+            } else {
+                return "redirect:/signin";
+            }
+        }
+
+        @GetMapping("/logout")
+        public String logout(HttpServletRequest request) {
+            HttpSession session = request.getSession();
+            session.invalidate();
             return "redirect:/signin";
         }
-    }
 
-    @GetMapping("/logout")
-    public String logout(HttpServletRequest request) {
-        HttpSession session = request.getSession();
-        session.invalidate();
-        return "redirect:/signin";
-    }
-
-    @GetMapping ("/cart")
-    public String cartPage(HttpServletRequest request){
-        HttpSession session = request.getSession();
-        if (session != null && session.getAttribute("connexion") != null && (boolean) session.getAttribute("connexion")) {
-            return "cart";
-        } else {
-            return "redirect:/signin";
+        @GetMapping ("/cart")
+        public String cartPage(HttpServletRequest request){
+            HttpSession session = request.getSession();
+            if (session != null && session.getAttribute("connexion") != null && (boolean) session.getAttribute("connexion")) {
+                return "cart";
+            } else {
+                return "redirect:/signin";
+            }
         }
-    }
+
+
+
+
+
 
 
     //controle service
@@ -202,16 +225,5 @@ public String getEmployeesByService(HttpServletRequest request,
         }
     }
 
-    /*public String welcomePage(HttpServletRequest request) {
-        HttpSession session = request.getSession();
-        if (session != null && session.getAttribute("connexion") == null) {
-            session.setAttribute("connexion", true);
-
-            // Set the userName attribute in the session
-            session.setAttribute("userName", "user");
-        }
-        return "index";
-    }*/
-
-
 }
+
