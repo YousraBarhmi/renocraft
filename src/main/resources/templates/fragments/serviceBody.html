@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>bodyService</title>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+
+</head>
+<body>
+<div class="service" th:fragment="service">
+    <div class="content">
+        <h2>Nos employeurs</h2>
+        <p >RenoCraft met à votre disposition une équipe bien formée pour répondre à vos besoins. Il suffit de contacter nos
+            employeurs qui sont plus les proches de votre ville.</p>
+    </div>
+    <div class="select">
+        <select  name="city" id="city"  onchange="filterByCity()">
+            <option value="all" th:selected="${city == null || city eq 'all'}">Sélectionner une ville</option>
+            <option value="casablanca" th:selected="${city eq 'casablanca'}">Casablanca</option>
+            <option value="rabat" th:selected="${city eq 'rabat'}">Rabat</option>
+            <option value="tanger" th:selected="${city eq 'tanger'}">Tanger</option>
+        </select>
+    </div>
+    <div class="button">
+        <button class="btn" style="font-size: medium;" data-serviceid="1" onclick="getEmployees(1)">Peinture</button>
+        <button class="btn" style="font-size: medium;" data-serviceid="2" onclick="getEmployees(2)">Plombiere</button>
+        <button class="btn" style="font-size: medium;" data-serviceid="3" onclick="getEmployees(3)">Revêtement</button>
+    </div>
+    <div id="employeeList" class="employees">
+        <div class="employee" th:each="emp:${employeurs}">
+            <div class="emp_image">
+                <img th:src="@{/images/employeur.png}" alt="employeur"> <!-- Fix th:href to th:src -->
+            </div>
+            <div class="emp_info">
+                <p style="font-family: Rund Display;" th:text="${emp.nom + ' ' + emp.prenom}"></p>
+                <p style="font-family: Rund Display;" th:text="${emp.numero}"></p>
+            </div>
+        </div>
+    </div>
+
+    <script th:inline="javascript">
+        function getEmployees(serviceId) {
+            var city = $('#city').val();  // Get the selected city value
+
+            // Construct the URL based on available parameters
+            var url = '/service';
+            if (serviceId) {
+                url += '?serviceId=' + serviceId;
+                if (city !== 'all') {
+                    url += '&city=' + city;
+                }
+            } else if (city !== 'all') {
+                url += '?city=' + city;
+            }
+
+            $.ajax({
+                type: 'GET',
+                url: url,
+                success: function (data) {
+                    // Update the content of the employees div within employeeList
+                    $('#employeeList').html($(data).find('.employees').html());
+                },
+                error: function (error) {
+                    console.error('Error fetching employees: ' + JSON.stringify(error));
+                }
+            });
+        }
+
+        function filterByCity() {
+            // Update the selected city value in the button
+            var selectedServiceId = $('button.active').data('serviceid');
+            getEmployees(selectedServiceId);
+        }
+    </script>
+</div>
+</body>
+</html>

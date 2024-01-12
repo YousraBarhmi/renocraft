@@ -1,0 +1,45 @@
+.profil{
+    padding-top: 7%;
+    font-family: "Rund Display", sans-serif;
+}
+.profil h2{
+    color: #201F25;
+    font-size: 39px;
+    margin-bottom: 2%;
+    padding-top: 10px;
+    font-family: "Rund Display", sans-serif;
+    text-align: center;
+}
+.profil .form{
+    display: flex;
+    justify-content: space-evenly;;
+}
+.profil .inp{
+    width: 600px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-direction: row;
+}
+.profil .inp .lab{
+    width: 22%;
+}
+.profil .inp input{
+    width: 78%;
+    padding-left: 25px;
+    background-size: 20px;
+}
+.camera .cam {
+    background: linear-gradient(rgba(20, 20, 31, 0.18), rgba(20, 20, 31, 0.13));
+    border-radius: 50px;
+    overflow: hidden;
+    padding: 10px 5px 10px 12px;
+}
+.camera .cam img {
+    display: block;
+    width: 90%;
+}/*
+.inp .icon{
+    position: absolute;
+    right:17%;
+}*/

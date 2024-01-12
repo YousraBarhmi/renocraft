@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Contact</title>
@@ -41,12 +41,12 @@
             </div>
         </div>
         <div class="formu">
-            <form id="form">
+            <form id="form" th:action="@{/contact}" method="post" th:object="${contact}">
                 <p>Posez vos questions ici</p>
-                <input type="email" placeholder="Adresse Email" name="email"/><br/>
-                <input type="text" placeholder="Nom"/><br/>
-                <input type="text" placeholder="Prénom"/><br/>
-                <textarea placeholder="Message"></textarea><br/>
+                <input type="email" placeholder="Adresse Email" name="email" required/><br/>
+                <input type="text" placeholder="Nom" name="nom" required/><br/>
+                <input type="text" placeholder="Prénom" name="prenom" required/><br/>
+                <textarea placeholder="Message" name="message" required></textarea><br/>
                 <input type="submit" value="Envoyer"/>
             </form>
         </div>

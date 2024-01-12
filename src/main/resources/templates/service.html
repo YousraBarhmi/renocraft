@@ -1,33 +1,32 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
     <link rel="icon" th:href="@{images/logorenocraft.png}" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="theme-color" content="#201F25" />
     <meta name="author" content="-YE- -JS- -YB-" />
-    <meta name="description" content="Application JEE de RÃ©novation -RenoCraft-"/>
+    <meta name="description" content="Application JEE de Rénovation -RenoCraft-"/>
     <link rel="stylesheet" th:href="@{https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css}">
+    <meta charset="ISO-8859-1">
+    <script th:src="@{https://code.jquery.com/jquery-3.5.1.slim.min.js}"></script>
+    <script th:src="@{https://code.jquery.com/jquery-3.6.4.min.js}"></script>
     <link rel="stylesheet" th:href="@{css/general.css}" />
+    <link rel="stylesheet" th:href="@{css/carousel.css}" />
     <link rel="stylesheet" th:href="@{css/header.css}" />
-    <link rel="stylesheet" th:href="@{css/home.css}" />
-    <link rel="stylesheet" th:href="@{css/about.css}" />
-    <link rel="stylesheet" th:href="@{css/realisation.css}" />
-    <link rel="stylesheet" th:href="@{css/chiffre.css}" />
+    <link rel="stylesheet" th:href="@{css/service.css}" />
     <link rel="stylesheet" th:href="@{css/colab.css}" />
     <link rel="stylesheet" th:href="@{css/contact.css}" />
     <link rel="stylesheet" th:href="@{css/footer.css}" />
-
-    <title>RenoCraft</title>
+    <title>Service</title>
 </head>
 <body>
-    <div th:insert="~{fragments/header :: header}"></div>
-    <div th:insert="~{fragments/home :: home}"></div>
-    <div th:insert="~{fragments/about :: about}"></div>
-    <div th:insert="~{fragments/realisation :: realisation}"></div>
-    <div th:insert="~{fragments/chiffre :: chiffre}"></div>
+    <div th:insert="~{fragments/header2 :: header}"></div>
+    <div th:insert="~{fragments/slider :: slider}"></div>
+    <div th:insert="~{fragments/serviceBody :: service}"></div>
     <div th:insert="~{fragments/colab :: colab}"></div>
     <div th:insert="~{fragments/contact :: contact}"></div>
     <div th:insert="~{fragments/footer :: footer}"></div>
+
+<br>
 </body>
 </html>

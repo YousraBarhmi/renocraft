@@ -9,18 +9,16 @@
     <meta name="description" content="Application JEE de Rénovation -RenoCraft-"/>
     <link rel="stylesheet" th:href="@{https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css}">
     <link rel="stylesheet" th:href="@{css/general.css}" />
-
-    <link rel="stylesheet" th:href="@{css/success.css}" />
+    <link rel="stylesheet" th:href="@{css/header.css}" />
+    <link rel="stylesheet" th:href="@{css/colab.css}" />
+    <link rel="stylesheet" th:href="@{css/contact.css}" />
     <link rel="stylesheet" th:href="@{css/footer.css}" />
-    <title>Error !</title>
+    <title>Cart</title>
 </head>
 <body>
-<div class="part159">
-    <div class="success-container">
-        <p>404 - Page Not Found</p>
-        <a th:href="@{/}" class="return-button">Retour <i class="fa-solid fa-arrow-right"></i></a>
-    </div>
-</div>
+<div th:insert="~{fragments/header2 :: header}"></div>
+<div th:insert="~{fragments/colab :: colab}"></div>
+<div th:insert="~{fragments/contact :: contact}"></div>
 <div th:insert="~{fragments/footer :: footer}"></div>
 </body>
 </html>
