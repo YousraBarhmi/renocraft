@@ -13,8 +13,15 @@
     font-size: 39px;
     padding-bottom: 40px;
     font-family: "Rund Display", sans-serif;
-    margin-bottom: 50px;
+
     padding-top: 120px;
+}
+
+.pack p{
+    color: #201F25;
+    font-size: 18px;
+    font-family: "Rund Display", sans-serif;
+    margin-bottom: 25px;
 }
 
 .pack .pack1 .imgpack,.pack .pack2 .imgpack,.pack .pack3 .imgpack {
@@ -24,12 +31,12 @@
 }
 
 .pack1 .souspack,.pack3 .souspack{
-    width: 400px;
+    width: 500px;
     height: auto;
     position: relative;
 }
 .pack2 .souspack{
-    width: 500px;
+    width: 600px;
     height: auto;
     position: relative;
 }
@@ -38,7 +45,7 @@
     display: flex;
     justify-content: space-around;
     align-items: center;
-    width: 1000px;
+    width: 1200px;
     margin: 35px 0;
 }
 
@@ -51,6 +58,7 @@
     left: 0;
     padding: 8px 12px;
     background-color: rgba(255,255,255,0.5);
+    height: 3git 5px;
 }
 
 .element-superpose1 p {
@@ -58,6 +66,7 @@
     font-family: "Rund Display", sans-serif;
     color: #201F25;
     font-weight: 500;
+
 }
 
 .element-superpose2 {
@@ -73,14 +82,14 @@
     justify-content: space-between;
     align-items: center;
     height: 50px;
-    width: 400px;
+    width: 500px;
 }
 .pack2 .supcont {
     display: flex;
     justify-content: space-between;
     align-items: center;
     height: 50px;
-    width: 500px;
+    width: 600px;
 }
 
 .supcont1 i {
