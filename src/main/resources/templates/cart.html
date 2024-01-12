@@ -26,19 +26,34 @@
         <div class="fermer">
             <i class="fa-solid fa-xmark" onclick="closeVerif()"></i>
         </div>
-        <div class="imgfood">
-
+        <div class="imgcart">
+            <img th:src="@{/images/whitelogorenocraft.png}" alt="jk.png">
         </div>
         <div class="content">
             <div class="cont1">
-                <h3  >À Partir De 15000Dh</h3>
+                <h3  >Planification De Rendez-Vous</h3>
 
             </div>
-            <div class="cont2">
-                <h4>Description</h4>
-            </div>
             <div class="cont4">
-                <p>Transformez votre cuisine en un espace culinaire innovant et fonctionnel avec notre pack cuisine. Optez pour des designs modernes, des équipements de pointe et des solutions de rangement astucieuses. Des matériaux de haute qualité et des choix de couleurs harmonieux créeront une ambiance accueillante.</p>
+                <form method="post">
+                    <div>
+                    <label for="tel">Numéro de Téléphone : </label>
+                    <br>
+                    <input type="text" required class="inputlong" id="tel" name="tel" disabled></div>
+                    <div class="groupdeinput">
+                        <div class="inputgroup1">
+                        <label for="date">Date :</label><br>
+                        <input type="date" required id="date" name="date">
+                        </div>
+                        <div class="inputgroup2">
+                        <label for="heure">Heure :</label><br>
+                        <input type="time" required id="heure" name="heure">
+                        </div>
+                    </div>
+                    <div class="subdiv">
+                        <input type="submit" value="Envoyer" class="subinput">
+                    </div>
+                </form>
             </div>
         </div>
 

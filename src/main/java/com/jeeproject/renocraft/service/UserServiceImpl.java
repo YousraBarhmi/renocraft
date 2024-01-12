@@ -15,16 +15,16 @@ public class UserServiceImpl implements UserService {
     public void registerUser(User user) {
             repo.save(user);
     }
-<<<<<<< HEAD
+
     public boolean usernameExists(String username) {
         return repo.existsByUsername(username);
 
     }
     @Override
     public User signin(String username, String password) {
-            User user = repo.findByUsernameAndPassword(username, password);
-            return user;
-=======
+        User user = repo.findByUsernameAndPassword(username, password);
+        return user;
+    }
 
     @Override
     public Optional<User> getUser(String userName) {
@@ -45,6 +45,5 @@ public class UserServiceImpl implements UserService {
             return true;
         }
         return false;
->>>>>>> 9c001438efcd4a809a9c3934fd38bb55354ffcd6
     }
 }

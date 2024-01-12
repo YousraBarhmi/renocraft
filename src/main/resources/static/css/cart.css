@@ -123,7 +123,7 @@
     z-index: 109;
     display: none;
 }
-.cartsec #popVerif {
+#popVerif {
     position: fixed;
     z-index: 110;
     left: 50%;
@@ -136,61 +136,110 @@
     display: none;
 }
 
-.packbloc .fermer {
+.cartsec .packbloc .fermer {
     justify-content: end;
     display: flex;
     color: white;
     align-items: center;
     height: 50px;
-
-}
-
-.fermer i {
-    scale: 1.5;
-    margin-right: 80px;
-}
-
-.packbloc .imgfood img {
     width: 100%;
-    height: 230px;
-    border-radius: 10px 10px 0 0;
 }
 
-.packbloc .content .cont1 h3{
-    font-size: 20px;
-    font-family: "Rund Display", sans-serif;
-    color: #201F25;
-    margin-left: 60px;
-}
-
-.packbloc .content .cont1 i{
-    scale: 1.4;
-    color: #201F25;
+.cartsec .fermer i {
+    scale: 1.5;
+    margin-right: 50px;
+    margin-top: 50px;
     cursor: pointer;
-    margin-right: 60px;
 }
 
-.packbloc .content .cont1{
+
+.cartsec .packbloc .imgcart {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
-    height: 40px;
+    height: 120px;
+    width: auto;
+    margin-top: 40px;
+}
+
+.cartsec .packbloc .imgcart img{
+    height: 150px;
     width: auto;
 }
-
-
-
-
-.packbloc .content .cont2 h4{
-    font-size: 20px;
+.cartsec .packbloc .content .cont1 h3{
+    font-size: 30px;
     font-family: "Rund Display", sans-serif;
-    color: #201F25;
-    padding-right: 45px;
-    margin-left: 60px;
+    color: white;
+    text-align: center !important;
 }
 
+.cartsec .content .cont1 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 30px;
+}
 
-.packbloc .content .cont4 p{
+label {
+    color: white;
+    font-size: 14px;
+    font-family: "Montserrat",sans-serif;
+    font-weight: 400;
+}
+
+.groupdeinput{
+    justify-content: center;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.inputlong{
+    width: 350px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.subdiv{
+    justify-content: end;
+    align-items: center;
+    display: flex;
+    width: 100%;
+    height: 120px;
+    margin-top: 10px;
+}
+
+.subdiv .subinput {
+    background-color: white;
+    color: black;
+    padding: 8px 15px;
+    border-radius: 30px;
+    width: 120px;
+    font-weight: 500;
+    font-family: "Rund Display", sans-serif;
+    cursor: pointer;
+    font-size: 17px;
+    scale: none;
+    border: none;
+
+}
+
+.subdiv .subinput:hover {
+
+    color: black;
+    font-weight: 500;
+
+}
+
+.cartsec .cont4  {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.cartsec .packbloc .content .cont4 p{
     font-size: 14px;
     font-family: "Montserrat",sans-serif;
     color: black;
