@@ -2,6 +2,8 @@ body {
     margin: 0;
     background-color: #E3E3E3;
     overflow: hidden; /* Empêche le défilement vertical */
+    font-family: 'Rund Display',sans-serif;
+
 }
 
 .signin {
@@ -13,7 +15,7 @@ body {
 .signin-image{
     display: flex;
     width: 40%;
-    margin-left: 10%;
+    margin-left: 3%;
 
 }
 
@@ -24,11 +26,11 @@ body {
 .content-signin {
     width: 80%;
     border-radius: 15px;
-    background-color: #000;
-    border: 1px solid #000;
+    background-color: #201F25;
+    border: 1px solid #201F25;
     padding: 17px;
     margin-bottom: 15px; /* Ajout d'un espace en bas de 2px */
-    height: 80vh;
+    height: 70vh;
 }
 .form-group {
     margin-top: 20px;
@@ -40,7 +42,7 @@ body {
 .Form-signin {
     flex: 1;
     display: flex;
-    margin-top: 5%;
+    margin-top: 8%;
     margin-left: 8%;
 }
 .icone{margin-left: 40%;}
@@ -63,16 +65,31 @@ h2 {
 
 }
 .form-control {
-
+    border:none;
+    outline:none;
     padding: 5px;
     box-sizing: border-box;
     border-radius: 15px;
     width:75%;
 }
 .btn-signin{
-    margin-left: 28%;
+    margin-left: 25%;
     margin-top: 20px;
     width: 50%;
+    margin-bottom:20px;
+
+}
+.btn-signin a {
+    font-size: 16px;
+    width: 100%;
+    margin: 2px;
+    margin-left:80px;
+    background-color: transparent;
+    color: #ffffff;
+    cursor: pointer;
+    padding: 8px;
+    border-radius: 15px;
+    border-color: white;
 
 }
 .btn-info {
@@ -87,8 +104,7 @@ h2 {
     border-color: white;
 
 }
-
 .btn-info:hover {
     background-color: white;
-    color: black;
+    color: #201F25;
 }

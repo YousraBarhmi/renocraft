@@ -21,22 +21,22 @@
             <div class="icone">
                 <img th:src="@{images/whitelogorenocraft.png}" alt="log">
             </div>
-            <h2> Créer un compte</h2>
+            <h2> Se connecter </h2>
             <form action="#" th:action="@{/signin}" th:object="${user}" method="post">
                 <div class="form-group">
                     <div class="lable"><label for="username" class="form-label">Username</label></div>
-                    <input type="text"  id="username" th:field="*{username}" class="form-control" />
+                    <input type="text"  id="username" th:field="*{username}" class="form-control" required />
                 </div>
                 <div class="form-group">
                     <div class="lable"><label for="password" class="form-label">Password</label></div>
-                    <input type="password" id="password" th:field="*{password}" class="form-control" />
+                    <input type="password" id="password" th:field="*{password}" class="form-control" required />
                 </div>
                 <div class="btn-signin">
                 <button type="submit" class="btn-info">Se connecter</button>
                 </div>
-                <div class="btn-inscrire">
+                <div class="btn-signin" th:href="@{/signup}">
                     <a th:href="@{/signup}">
-                        <button class="btn-info">S'inscrire</button>
+                        S'inscrire
                     </a>
                 </div>
             </form>

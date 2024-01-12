@@ -2,6 +2,8 @@ body {
     margin: 0;
     background-color: #E3E3E3;
     overflow: hidden; /* Empêche le défilement vertical */
+    font-family: 'Rund Display',sans-serif;
+
 }
 
 .signup {
@@ -30,8 +32,8 @@ body {
 .content {
     width: 80%;
     border-radius: 15px;
-    background-color: #000;
-    border: 1px solid #000;
+    background-color: #201F25;
+    border: 1px solid  #201F25;
     padding: 17px;
     margin-bottom: 15px; /* Ajout d'un espace en bas de 2px */
     height: auto;
@@ -64,7 +66,8 @@ h2 {
 }
 
 .form-control {
-
+    border:none;
+    outline:none;
     padding: 5px;
     box-sizing: border-box;
     border-radius: 15px;
@@ -92,7 +95,7 @@ h2 {
 
 .boutonsub:hover {
     background-color: white;
-    color: black;
+    color:  #201F25;
 }
 .popup {
     background-color: #fff;
