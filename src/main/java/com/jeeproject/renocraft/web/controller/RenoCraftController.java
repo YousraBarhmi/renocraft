@@ -48,6 +48,10 @@ public class RenoCraftController {
         this.serviceService = serviceService;
         this.userService = userService;
     }
+<<<<<<< HEAD
+    @GetMapping ("/")
+    public String welcomePage(){
+=======
 
 
 
@@ -63,6 +67,7 @@ public class RenoCraftController {
             // Set the userName attribute in the session
             session.setAttribute("userName", "user");
         }*/
+<<<<<<< HEAD
 
             return "index";
         }
@@ -71,6 +76,23 @@ public class RenoCraftController {
         public String register(Model model){
             User user=new User();
             model.addAttribute("user",user);
+=======
+>>>>>>> 462e0d813f7f7d4332e2fdc9f384d38e3173ef4c
+        return "index";
+    }
+
+    @GetMapping ("/signup")
+    public String register(Model model){
+        User user=new User();
+        model.addAttribute("user",user);
+        return "signup";
+    }
+
+    @PostMapping("/registerUser")
+    public String registerUser(@ModelAttribute("user") User user, Model model) {
+        if (service.usernameExists(user.getUsername())) {
+            model.addAttribute("usernameExists", true);
+>>>>>>> d4c05a6c897aa2a64c3ca836893dca8d3aa96570
             return "signup";
         }
 
@@ -223,6 +245,124 @@ public class RenoCraftController {
             // Set the userName attribute in the session
             session.setAttribute("userName", "user");
         }
+<<<<<<< HEAD
         return "index";
     }*/
     }
+=======
+    }
+
+
+    //controle service
+    @GetMapping("/contact")
+    public String showContactForm(Model model) {
+        model.addAttribute("contact", new Contact());
+        return "fragments/contact";
+    }
+
+    @PostMapping("/contact")
+    public String processContactForm(@ModelAttribute("contact") Contact contact) {
+        contactService.addContact(contact);
+        return "redirect:/success";
+    }
+
+@GetMapping("/service")
+public String getEmployeesByService(HttpServletRequest request,
+        @RequestParam(required = false) Long serviceId,
+        @RequestParam(required = false) String city,
+        Model model) {
+    HttpSession session = request.getSession();
+    if (session != null && session.getAttribute("connexion") != null && (boolean) session.getAttribute("connexion")) {
+        actualServiceId = (serviceId != null) ? serviceId : actualServiceId;
+        List<Employeur> employeurs;
+
+        if (city == null) {
+            employeurs = employeurService.getEmployeurByService(actualServiceId);
+        } else {
+            employeurs = employeurService.getEmployeurByServiceCity(actualServiceId, city);
+        }
+        model.addAttribute("employeurs", employeurs);
+        model.addAttribute("actualServiceId", actualServiceId); // Adding actualServiceId to the model
+        return "service";
+    } else {
+        return "redirect:/signin";
+    }
+}
+
+    @GetMapping ("/home")
+    public String homeAfterConn(HttpServletRequest request){
+        HttpSession session = request.getSession();
+        if (session != null && session.getAttribute("connexion") != null && (boolean) session.getAttribute("connexion")) {
+
+            return "home";
+        } else {
+            return "redirect:/signin";
+        }
+    }
+
+    @GetMapping ("/profil")
+    public String getProfil(HttpServletRequest request, Model model){
+        HttpSession session = request.getSession();
+        if (session != null && session.getAttribute("connexion") != null && (boolean) session.getAttribute("connexion")) {
+            String user = (String) session.getAttribute("userName");
+            Optional<User> profil = userService.getUser(user);
+            model.addAttribute("profil", profil);
+            return "profil";
+        } else {
+            return "redirect:/signin";
+        }
+    }
+    @PostMapping("/profil")
+    public String editProfile(@ModelAttribute("profil") User updatedUser) {
+        // Perform the user profile update
+        boolean editSuccessful = userService.editUser(updatedUser);
+
+        if (editSuccessful) {
+            System.out.println("yes");
+            // Redirect to the profile page with a success message
+            return "redirect:/profil?success";
+        } else {
+            // Redirect to the profile page with an error message
+            System.out.println("no");
+            return "redirect:/profil?error";
+        }
+    }
+
+
+    @GetMapping ("/signin")
+    public ModelAndView signin()
+    {
+        ModelAndView mav = new ModelAndView("signin");
+        mav.addObject("user", new User());
+        return mav;
+    }
+
+
+    @PostMapping("/signin")
+    public String signin(@ModelAttribute("user") User user, HttpServletRequest request) {
+        HttpSession session = request.getSession();
+        User oauthUser = service.signin(user.getUsername(), user.getPassword());
+        System.out.println(oauthUser);
+        if (session != null  && oauthUser != null) {
+            session.setAttribute("connexion", true);
+            session.setAttribute("userName", oauthUser.getUsername());
+            return "redirect:/home";
+        } else {
+            return "redirect:/signin-error";
+        }
+    }
+
+    /*public String welcomePage(HttpServletRequest request) {
+        HttpSession session = request.getSession();
+        if (session != null && session.getAttribute("connexion") == null) {
+            session.setAttribute("connexion", true);
+
+            // Set the userName attribute in the session
+            session.setAttribute("userName", "user");
+        }
+        return "index";
+    }*/
+
+
+}
+>>>>>>> d4c05a6c897aa2a64c3ca836893dca8d3aa96570

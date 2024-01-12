@@ -25,6 +25,10 @@ public class UserServiceImpl implements UserService {
         User user = repo.findByUsernameAndPassword(username, password);
         return user;
     }
+<<<<<<< HEAD
+=======
+
+>>>>>>> d4c05a6c897aa2a64c3ca836893dca8d3aa96570
 
     @Override
     public Optional<User> getUser(String userName) {
@@ -45,5 +49,9 @@ public class UserServiceImpl implements UserService {
             return true;
         }
         return false;
+<<<<<<< HEAD
+=======
+
+>>>>>>> d4c05a6c897aa2a64c3ca836893dca8d3aa96570
     }
 }
