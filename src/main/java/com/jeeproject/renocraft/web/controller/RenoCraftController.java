@@ -39,6 +39,11 @@ public class RenoCraftController {
         return "success";
     }
 
+    @GetMapping ("/packs")
+    public String packsPage(){
+        return "pack";
+    }
+
 
     //controle service
     @GetMapping("/contact")

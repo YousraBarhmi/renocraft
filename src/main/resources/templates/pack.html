@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="icon" th:href="@{images/logorenocraft.png}" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#201F25" />
+    <meta name="author" content="-YE- -JS- -YB-" />
+    <meta name="description" content="Application JEE de Rénovation -RenoCraft-"/>
+    <link rel="stylesheet" th:href="@{https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css}">
+    <link rel="stylesheet" th:href="@{css/general.css}" />
+    <link rel="stylesheet" th:href="@{css/packpage.css}" />
+    <link rel="stylesheet" th:href="@{css/header.css}" />
+
+    <link rel="stylesheet" th:href="@{css/colab.css}" />
+    <link rel="stylesheet" th:href="@{css/contact.css}" />
+    <link rel="stylesheet" th:href="@{css/footer.css}" />
+    <title>Packs</title>
+</head>
+<body>
+<div th:insert="~{fragments/header2 :: header}"></div>
+<div class="pack">
+  <h2>Nos Packs</h2>
+  <div class="pack1">
+      <!--pop up-->
+      <div class="overlay2" id="filtre1"></div>
+      <div class="packbloc" id="pop1">
+          <div class="imgfood">
+              <img th:src="@{/images/pack1.png}" alt="food.jpg"/>
+          </div>
+          <div class="content">
+              <div class="cont1">
+                  <h3  >À Partir De 15000Dh</h3>
+                  <i class="fa-solid fa-xmark" onclick="close2()"></i>
+              </div>
+              <div class="cont2">
+                  <h4>Description</h4>
+              </div>
+              <div class="cont4">
+                  <p>Transformez votre cuisine en un espace culinaire innovant et fonctionnel avec notre pack cuisine. Optez pour des designs modernes, des équipements de pointe et des solutions de rangement astucieuses. Des matériaux de haute qualité et des choix de couleurs harmonieux créeront une ambiance accueillante.</p>
+              </div>
+          </div>
+
+      </div>
+      <!--pop up-->
+      <!--pop up-->
+      <div class="overlay2" id="filtre2"></div>
+      <div class="packbloc" id="pop2">
+          <div class="imgfood">
+              <img th:src="@{/images/pack2.png}" alt="food.jpg"/>
+          </div>
+          <div class="content">
+              <div class="cont1">
+                  <h3  >À Partir De 5000Dh</h3>
+                  <i class="fa-solid fa-xmark" onclick="close3()"></i>
+              </div>
+              <div class="cont2">
+                  <h4>Description</h4>
+              </div>
+              <div class="cont4">
+                  <p>Transformez votre salon en un havre de paix et de confort avec notre pack salon. Optez pour des meubles élégants, des couleurs apaisantes et des solutions d'éclairage astucieuses. Créez l'atmosphère parfaite pour vous détendre, socialiser et profiter de moments inoubliables en famille.</p>
+              </div>
+          </div>
+
+      </div>
+      <!--pop up-->
+      <!--pop up-->
+      <div class="overlay2" id="filtre3"></div>
+      <div class="packbloc" id="pop3">
+          <div class="imgfood">
+              <img th:src="@{/images/pack3.png}" alt="food.jpg"/>
+          </div>
+          <div class="content">
+              <div class="cont1">
+                  <h3  >À Partir De 10000Dh</h3>
+                  <i class="fa-solid fa-xmark" onclick="close4()"></i>
+              </div>
+              <div class="cont2">
+                  <h4>Description</h4>
+              </div>
+              <div class="cont4">
+                  <p>Faites de votre jardin un oasis de verdure et de sérénité grâce à notre pack jardin. Aménagez des espaces de détente, choisissez des plantes exquises et créez une ambiance paisible en plein air. Offrez-vous un coin de paradis où vous pourrez vous ressourcer et partager des moments agréables avec vos proches.</p>
+              </div>
+          </div>
+
+      </div>
+      <!--pop up-->
+      <!--pop up-->
+      <div class="overlay2" id="filtre4"></div>
+      <div class="packbloc" id="pop4">
+          <div class="imgfood">
+              <img th:src="@{/images/pack4.png}" alt="food.jpg"/>
+          </div>
+          <div class="content">
+              <div class="cont1">
+                  <h3  >À Partir De 7000Dh</h3>
+                  <i class="fa-solid fa-xmark" onclick="close5()"></i>
+              </div>
+              <div class="cont2">
+                  <h4>Description</h4>
+              </div>
+              <div class="cont4">
+                  <p>Redéfinissez votre espace de sommeil avec notre pack chambre. Personnalisez votre décor, choisissez des textiles luxueux et créez une atmosphère relaxante. Du mobilier élégant aux accents décoratifs, transformez votre chambre en un refuge chaleureux et élégant pour des nuits de sommeil paisible.</p>
+              </div>
+          </div>
+
+      </div>
+      <!--pop up-->
+      <!--pop up-->
+      <div class="overlay2" id="filtre5"></div>
+      <div class="packbloc" id="pop5">
+          <div class="imgfood">
+              <img th:src="@{/images/pack5.png}" alt="food.jpg"/>
+          </div>
+          <div class="content">
+              <div class="cont1">
+                  <h3  >À Partir De 15000Dh</h3>
+                  <i class="fa-solid fa-xmark" onclick="close6()"></i>
+              </div>
+              <div class="cont2">
+                  <h4>Description</h4>
+              </div>
+              <div class="cont4">
+                  <p>Offrez-vous une expérience de bien-être quotidienne avec notre pack salle de bain. Optez pour des éléments modernes, des matériaux de qualité et une disposition fonctionnelle. Transformez votre salle de bain en un sanctuaire de détente, avec des options de revêtement raffinées et des équipements qui ajoutent une touche de luxe à votre routine quotidienne.</p>
+              </div>
+          </div>
+
+      </div>
+      <!--pop up-->
+    <div class="souspack" id="souspack1">
+
+        <img th:src="@{/images/pack1.png}" alt="pack.png" class="imgpack">
+
+        <div class="element-superpose1">
+            <p>Cuisine</p>
+        </div>
+        <div class="element-superpose2">
+            <div class="supcont">
+            <div class="supcont1"><i class="fa-solid fa-circle-info" onclick="popup()"></i></div>
+            <div class="supcont2"><button onclick="addPanier(1)">Ajouter Au Panier &nbsp;&nbsp;<i class="fa-solid fa-circle-plus"></i></button></div>
+            </div>
+        </div>
+    </div>
+      <div class="souspack" id="souspack2">
+          <img th:src="@{/images/pack2.png}" alt="pack.png" class="imgpack">
+          <div class="element-superpose1">
+              <p>Salon</p>
+          </div>
+          <div class="element-superpose2">
+              <div class="supcont">
+                  <div class="supcont1"><i class="fa-solid fa-circle-info" onclick="popup1()"></i></div>
+                  <div class="supcont2"><button onclick="addPanier(2)">Ajouter Au Panier &nbsp;&nbsp;<i class="fa-solid fa-circle-plus"></i></button></div>
+              </div>
+          </div>
+      </div>
+  </div>
+  <div class="pack2">
+      <div class="souspack" id="souspack3">
+
+          <img th:src="@{/images/pack3.png}" alt="pack.png" class="imgpack">
+
+          <div class="element-superpose1">
+              <p>Jardin</p>
+          </div>
+          <div class="element-superpose2">
+              <div class="supcont">
+                  <div class="supcont1"><i class="fa-solid fa-circle-info" onclick="popup2()"></i></div>
+                  <div class="supcont2"><button onclick="addPanier(3)">Ajouter Au Panier &nbsp;&nbsp;<i class="fa-solid fa-circle-plus"></i></button></div>
+              </div>
+          </div>
+      </div>
+  </div>
+  <div class="pack3">
+      <div class="souspack" id="souspack4">
+
+          <img th:src="@{/images/pack4.png}" alt="pack.png" class="imgpack">
+
+          <div class="element-superpose1">
+              <p>Chambre</p>
+          </div>
+          <div class="element-superpose2">
+              <div class="supcont">
+                  <div class="supcont1"><i class="fa-solid fa-circle-info" onclick="popup3()"></i></div>
+                  <div class="supcont2"><button onclick="addPanier(4)">Ajouter Au Panier &nbsp;&nbsp;<i class="fa-solid fa-circle-plus"></i></button></div>
+              </div>
+          </div>
+      </div>
+      <div class="souspack" id="souspack5">
+          <img th:src="@{/images/pack5.png}" alt="pack.png" class="imgpack">
+          <div class="element-superpose1">
+              <p>Salle De Bain</p>
+          </div>
+          <div class="element-superpose2">
+              <div class="supcont">
+                  <div class="supcont1"><i class="fa-solid fa-circle-info" onclick="popup4()"></i></div>
+                  <div class="supcont2"><button onclick="addPanier(5)">Ajouter Au Panier &nbsp;&nbsp;<i class="fa-solid fa-circle-plus"></i></button></div>
+              </div>
+          </div>
+      </div>
+  </div>
+</div>
+<div th:insert="~{fragments/colab :: colab}"></div>
+<div th:insert="~{fragments/contact :: contact}"></div>
+<div th:insert="~{fragments/footer :: footer}"></div>
+
+<script>
+
+    let panier = [];
+    if(localStorage.getItem("panierrenocraft")===null){
+        let pan = JSON.stringify(panier);
+        localStorage.setItem("panierrenocraft",pan);
+    }
+
+    const check = (nbpack)=>{
+      let paniernb = JSON.parse(localStorage.getItem("panierrenocraft"));
+      if(paniernb.length>0){
+          for(let i=0;i<paniernb.length;i++){
+              if(nbpack===paniernb[i].id){
+                  return false;
+              }
+          }
+      }
+      return true;
+    };
+    const addPanier = (nbpack)=>{
+        let pack;
+        let packs = [
+            {"id": 1, "piece": "Cuisine", "lien": "/images/pack1.png","prix": 15000,"description": "Transformez votre cuisine en un espace culinaire innovant et fonctionnel avec notre pack cuisine. Optez pour des designs modernes, des équipements de pointe et des solutions de rangement astucieuses. Des matériaux de haute qualité et des choix de couleurs harmonieux créeront une ambiance accueillante."},
+            {"id": 2, "piece": "Salon", "lien": "/images/pack2.png","prix": 5000,"description": "Transformez votre salon en un havre de paix et de confort avec notre pack salon. Optez pour des meubles élégants, des couleurs apaisantes et des solutions d'éclairage astucieuses. Créez l'atmosphère parfaite pour vous détendre, socialiser et profiter de moments inoubliables en famille."},
+            {"id": 3, "piece": "Jardin", "lien": "/images/pack3.png","prix": 10000,"description": "Faites de votre jardin un oasis de verdure et de sérénité grâce à notre pack jardin. Aménagez des espaces de détente, choisissez des plantes exquises et créez une ambiance paisible en plein air. Offrez-vous un coin de paradis où vous pourrez vous ressourcer et partager des moments agréables avec vos proches."},
+            {"id": 4, "piece": "Chambre", "lien": "/images/pack4.png","prix": 7000,"description": "Redéfinissez votre espace de sommeil avec notre pack chambre. Personnalisez votre décor, choisissez des textiles luxueux et créez une atmosphère relaxante. Du mobilier élégant aux accents décoratifs, transformez votre chambre en un refuge chaleureux et élégant pour des nuits de sommeil paisible."},
+            {"id": 5, "piece": "Salle de Bain", "lien": "/images/pack5.png","prix": 15000,"description": "Offrez-vous une expérience de bien-être quotidienne avec notre pack salle de bain. Optez pour des éléments modernes, des matériaux de qualité et une disposition fonctionnelle. Transformez votre salle de bain en un sanctuaire de détente, avec des options de revêtement raffinées et des équipements qui ajoutent une touche de luxe à votre routine quotidienne."}
+        ];
+        let valid = check(nbpack);
+        if(valid){
+            for(let i=1;i<=5;i++){
+                if(i===nbpack){
+                    pack = packs[i-1];
+                }
+            }
+            let cart = JSON.parse(localStorage.getItem("panierrenocraft"));
+            cart.push(pack);
+            localStorage.setItem("panierrenocraft",JSON.stringify(cart));
+        }
+    };
+
+
+
+    //pop up
+    const popup = ()=>{
+        const filtre = document.getElementById("filtre2");
+        const stade = document.getElementById("pop1");
+        stade.style.display="block";
+        filtre.style.display="block";
+    };
+
+    function close2(){
+        const filtre2 = document.getElementById("filtre2");
+        const stade2 = document.getElementById("pop1");
+        stade2.style.display="none";
+        filtre2.style.display="none";
+    }
+
+    const popup1 = ()=>{
+        const filtre = document.getElementById("filtre2");
+        const stade = document.getElementById("pop2");
+        stade.style.display="block";
+        filtre.style.display="block";
+    };
+
+    function close3(){
+        const filtre2 = document.getElementById("filtre2");
+        const stade2 = document.getElementById("pop2");
+        stade2.style.display="none";
+        filtre2.style.display="none";
+    }
+
+    const popup2 = ()=>{
+        const filtre = document.getElementById("filtre2");
+        const stade = document.getElementById("pop3");
+        stade.style.display="block";
+        filtre.style.display="block";
+    };
+
+    function close4(){
+        const filtre2 = document.getElementById("filtre2");
+        const stade2 = document.getElementById("pop3");
+        stade2.style.display="none";
+        filtre2.style.display="none";
+    }
+
+    const popup3 = ()=>{
+        const filtre = document.getElementById("filtre2");
+        const stade = document.getElementById("pop4");
+        stade.style.display="block";
+        filtre.style.display="block";
+    };
+
+    function close5(){
+        const filtre2 = document.getElementById("filtre2");
+        const stade2 = document.getElementById("pop4");
+        stade2.style.display="none";
+        filtre2.style.display="none";
+    }
+    const popup4 = ()=>{
+        const filtre = document.getElementById("filtre2");
+        const stade = document.getElementById("pop5");
+        stade.style.display="block";
+        filtre.style.display="block";
+    };
+
+    function close6(){
+        const filtre2 = document.getElementById("filtre2");
+        const stade2 = document.getElementById("pop5");
+        stade2.style.display="none";
+        filtre2.style.display="none";
+    }
+</script>
+</body>
+</html>
