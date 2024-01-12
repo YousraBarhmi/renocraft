@@ -1,12 +1,13 @@
 package com.jeeproject.renocraft.web.controller;
 
-<<<<<<< HEAD
+
 
 import com.jeeproject.renocraft.entity.User;
 import com.jeeproject.renocraft.service.UserService;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
-=======
+
+
 import com.jeeproject.renocraft.entity.Contact;
 import com.jeeproject.renocraft.entity.Employeur;
 import com.jeeproject.renocraft.entity.User;
@@ -16,41 +17,28 @@ import com.jeeproject.renocraft.service.ServiceService;
 import com.jeeproject.renocraft.service.UserService;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
->>>>>>> 9c001438efcd4a809a9c3934fd38bb55354ffcd6
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-<<<<<<< HEAD
+
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.util.List;
 import java.util.Objects;
+import java.util.Optional;
 
 @Controller
 public class RenoCraftController {
     @Autowired
     private UserService service;
-    @GetMapping ("/")
-    public String welcomePage(){
-        return "index";
-    }
-
-=======
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestParam;
-
-import java.util.List;
-import java.util.Optional;
-
-@Controller
-public class RenoCraftController {
     private final ContactService contactService;
     private final EmployeurService employeurService;
     private final ServiceService serviceService;
     private final UserService userService;
     private Long actualServiceId = 1L;
-
     public RenoCraftController(ContactService contactService,
                                EmployeurService employeurService,
                                ServiceService serviceService,
@@ -60,24 +48,11 @@ public class RenoCraftController {
         this.serviceService = serviceService;
         this.userService = userService;
     }
-
-
-    //mapping
-    @GetMapping("/")
-    public String welcomePage(HttpServletRequest request) {
-        HttpSession session = request.getSession();
-        if (session != null && session.getAttribute("connexion") == null) {
-            session.setAttribute("connexion", true);
-
-            // Set the userName attribute in the session
-            session.setAttribute("userName", "user");
-        }
+    @GetMapping ("/")
+    public String welcomePage(){
         return "index";
     }
 
-
-
->>>>>>> 9c001438efcd4a809a9c3934fd38bb55354ffcd6
     @GetMapping ("/signup")
     public String register(Model model){
         User user=new User();
@@ -206,21 +181,31 @@ public String getEmployeesByService(HttpServletRequest request,
         return mav;
     }
 
+
     @PostMapping("/signin")
-    public String signin(@ModelAttribute("user") User user, HttpSession session ) {
-
+    public String signin(@ModelAttribute("user") User user, HttpServletRequest request) {
+        HttpSession session = request.getSession();
         User oauthUser = service.signin(user.getUsername(), user.getPassword());
-
-        if (Objects.nonNull(oauthUser)) {
-            // Set the user in the session
-            session.setAttribute("user", oauthUser);
-
-            // Assuming you want to redirect to the home page upon successful sign-in
-            return "redirect:/";
+        System.out.println(oauthUser);
+        if (session != null  && oauthUser != null) {
+            session.setAttribute("connexion", true);
+            session.setAttribute("userName", oauthUser.getUsername());
+            return "redirect:/home";
         } else {
-            // Redirect back to the sign-in page with an error parameter
-            return "redirect:/error";
+            return "redirect:/signin-error";
         }
     }
+
+    /*public String welcomePage(HttpServletRequest request) {
+        HttpSession session = request.getSession();
+        if (session != null && session.getAttribute("connexion") == null) {
+            session.setAttribute("connexion", true);
+
+            // Set the userName attribute in the session
+            session.setAttribute("userName", "user");
+        }
+        return "index";
+    }*/
+
 
 }
