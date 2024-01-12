@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>profil</title>
+</head>
+<body>
+<div class="profil" id="contact" th:fragment="profil">
+  <h1 class="ticlair chlen">Informations personnelles</h1>
+  <div class="information">
+    <div class="formu">
+      <form id="form" th:action="@{/contact}" method="post" th:object="${contact}">
+        <label for="prenom"> Prenom </label>
+          <input type="text" id="prenom" name="prenom" required/>
+        <label for="nom">Nom:</label>
+        <input type="text" id="nom" placeholder="Nom" name="nom" required/><br/>
+        <label for="numero">Telephone:</label>
+        <input type="text" id="numero" placeholder="numero" name="numero" required/><br/>
+        <label for="email">Gmail:</label>
+        <input type="email" id="email" placeholder="Adresse Email" name="email" required/><br/>
+        <label for="adresse">Adresse:</label>
+        <textarea type="text" id="adresse" placeholder="adresse" name="adresse" required></textarea><br/>
+        <input type="submit" value="Envoyer"/>
+      </form>
+    </div>
+  </div>
+  <div class="retour">
+    <div class="mon"><a th:href="@{'#home'}" class="fleche"><i class="fa-solid fa-arrow-up"></i></a></div>
+  </div>
+</div>
+</body>
+</html>
