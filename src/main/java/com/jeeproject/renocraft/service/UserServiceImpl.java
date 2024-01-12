@@ -13,4 +13,13 @@ public class UserServiceImpl implements UserService {
     public void registerUser(User user) {
             repo.save(user);
     }
+    public boolean usernameExists(String username) {
+        return repo.existsByUsername(username);
+
+    }
+    @Override
+    public User signin(String username, String password) {
+            User user = repo.findByUsernameAndPassword(username, password);
+            return user;
+    }
 }

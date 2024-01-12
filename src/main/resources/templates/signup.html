@@ -1,6 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+>
 <head>
+
     <meta charset="UTF-8">
     <link rel="icon" th:href="@{images/logorenocraft.png}" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -8,10 +11,77 @@
     <meta name="author" content="-YE- -JS- -YB-" />
     <meta name="description" content="Application JEE de Rénovation -RenoCraft-"/>
     <link rel="stylesheet" th:href="@{css/general.css}" />
+    <link rel="stylesheet" th:href="@{css/header.css}" />
+    <link rel="stylesheet" th:href="@{css/registration.css}" />
+    <script th:src="@{js/password-validation.js}"></script>
+    <script th:inline="javascript">
+        document.addEventListener('DOMContentLoaded',
+            function () {
+                if ([[${usernameExists}]]) {
+                    showPopup();
+                }
+            });
+
+        function showPopup() {
+            const popup = document.getElementById('popup');
+            popup.style.display = 'block';
+        }
+    </script>
 
     <title>Sign Up</title>
 </head>
-<body>
-Welcome  fgf
+<body >
+<div id="popup" class="popup" style="display: none;">
+    <p>Le nom d'utilisateur existe déjà. Veuillez en choisir un autre.</p>
+</div>
+
+<div th:insert="~{fragments/header :: header}"></div>
+<div class="signup">
+    <div class="img">
+        <img th:src="@{images/Registration.png}" alt="registration" />
+    </div>
+    <div class="Form">
+        <div class="content">
+            <div class="icone">
+                <img th:src="@{images/whitelogorenocraft.png}" alt="log">
+            </div>
+            <h2> Créer un compte</h2>
+
+            <form th:action="@{/registerUser}" th:object="${user}" method="post">
+                <div class="item">
+                    <div class="label"><label for="name" class="form-label"><b>Nom Complet:</b></label></div>
+                    <input type="text" th:field="*{name}" class="form-control" placeholder="Entrer votre nom complet" name="name" id="name" required>
+                </div>
+                <div class="item" >
+                    <div class="label"><label for="username" class="form-label"><b>Nom d'utilisateur:</b></label></div>
+                    <input type="text" th:field="*{username}" class="form-control" placeholder="Entrer le nom de votre profil" name="nameuser" id="username" required>
+                </div>
+                <div  class="item">
+                    <div class="label"><label for="email" class="form-label"><b>Email:</b></label></div>
+                    <input type="text" th:field="*{email}" class="form-control" placeholder="Name@gmail.com" name="email" id="email" required>
+                </div >
+                <div class="item">
+                    <div class="label"><label for="psw" class="form-label"><b>Mot de passe:</b></label></div>
+                    <input type="password"  th:field="*{password}" class="form-control" placeholder="Entrer un mot de passe" name="psw" id="psw" required>
+                </div>
+                <div class="item">
+                    <div class="label"><label for="psw-repeat" class="form-label"><b>Confirmer:</b></label></div>
+                    <input type="password"  th:field="*{cpassword}" class="form-control" placeholder="Confirmer votre mot de passe" name="psw-repeat" id="psw-repeat" required>
+                </div>
+                <div class="item">
+                    <div class="label"><label for="phone" class="form-label"><b>Téléphone:</b></label></div>
+                    <input type="text" th:field="*{phone}" class="form-control" placeholder="Entre votre numéro de téléphone" name="phone" id="phone" required>
+                </div>
+                <div class="btnsub">
+                    <button type="button" onclick="validatePasswords()" class="boutonsub">s'inscrire</button>
+                </div>
+            </form>
+
+        </div>
+    </div>
+
+</div>
+
+
 </body>
 </html>
