@@ -1,4 +1,3 @@
-
 .service{
     background: #E3E3E3;
     height: auto;
@@ -48,7 +47,8 @@
 }
 .service  .button button:hover
 {
-    box-shadow: #201F25;
+    background:white ;
+    color: #201F25;
 }
 .service .employee{
     display: flex;

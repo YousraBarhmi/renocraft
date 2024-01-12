@@ -38,8 +38,8 @@
 .camera .cam img {
     display: block;
     width: 90%;
-}/*
-.inp .icon{
-    position: absolute;
-    right:17%;
-}*/
+}
+.icone img{
+    width: 35%;
+    margin: 0;
+}
