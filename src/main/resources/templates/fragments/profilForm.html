@@ -1,31 +1,51 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <title>profil</title>
+  <meta charset="UTF-8">
+  <title>profil</title>
 </head>
 <body>
-<div class="profil" id="contact" th:fragment="profil">
-  <h1 class="ticlair chlen">Informations personnelles</h1>
-  <div class="information">
-    <div class="formu">
-      <form id="form" th:action="@{/contact}" method="post" th:object="${contact}">
-        <label for="prenom"> Prenom </label>
-          <input type="text" id="prenom" name="prenom" required/>
-        <label for="nom">Nom:</label>
-        <input type="text" id="nom" placeholder="Nom" name="nom" required/><br/>
-        <label for="numero">Telephone:</label>
-        <input type="text" id="numero" placeholder="numero" name="numero" required/><br/>
-        <label for="email">Gmail:</label>
-        <input type="email" id="email" placeholder="Adresse Email" name="email" required/><br/>
-        <label for="adresse">Adresse:</label>
-        <textarea type="text" id="adresse" placeholder="adresse" name="adresse" required></textarea><br/>
-        <input type="submit" value="Envoyer"/>
+<div class="profil" id="profil" th:fragment="profil">
+  <h2 class="">Informations personnelles</h2>
+  <div class="">
+    <div class="form" th:if="${profil.isPresent()}">
+      <div class="camera">
+        <div class="cam">
+          <img th:src="@{/images/Camera.png}" alt="photo.png">
+        </div>
+      </div>
+      <form th:action="@{/profil}" method="post" th:object="${profil}">
+        <div class="inp">
+          <div class="lab">
+            <label for="name">Nom : </label>
+          </div>
+          <input type="text" id="name" placeholder="votre nom" th:value="${profil.get().getName()}" name="name" required/>
+        </div>
+        <div class="inp">
+          <div class="lab">
+            <label for="userName">Nom d'Utilisateur :</label>
+          </div>
+          <input type="text" id="userName" th:value="${profil.get().getUsername()}" name="username" disabled required/><br/>
+        </div>
+        <div class="inp">
+          <div class="lab">
+            <label for="phone">Telephone :</label>
+          </div>
+          <input type="text" id="phone" placeholder="votre numero de telephone" th:value="${profil.get().getPhone()}" name="phone" required/><br/>
+
+        </div>
+        <div class="inp">
+          <div class="lab">
+            <label for="email">Gmail :</label>
+          </div>
+          <input type="email" id="email" placeholder="Adresse Email" th:value="${profil.get().getEmail()}" name="email" disabled required/><br/>
+        </div>
+        <input type="submit" value="Modifier"/>
       </form>
     </div>
-  </div>
-  <div class="retour">
-    <div class="mon"><a th:href="@{'#home'}" class="fleche"><i class="fa-solid fa-arrow-up"></i></a></div>
+    <div class="icone">
+      <img th:src="@{/images/blacklogorenocraft.png}" alt="logorenocraft.png">
+    </div>
   </div>
 </div>
 </body>

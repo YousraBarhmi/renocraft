@@ -10,11 +10,11 @@
 <div class="service" th:fragment="service">
     <div class="content">
         <h2>Nos employeurs</h2>
-        <p>RenoCraft met à votre disposition une équipe bien formée pour répondre à vos besoins. Il suffit de contacter nos
+        <p >RenoCraft met à votre disposition une équipe bien formée pour répondre à vos besoins. Il suffit de contacter nos
             employeurs qui sont plus les proches de votre ville.</p>
     </div>
     <div class="select">
-        <select  name="city" id="city" onchange="filterByCity()">
+        <select  name="city" id="city"  onchange="filterByCity()">
             <option value="all" th:selected="${city == null || city eq 'all'}">Sélectionner une ville</option>
             <option value="casablanca" th:selected="${city eq 'casablanca'}">Casablanca</option>
             <option value="rabat" th:selected="${city eq 'rabat'}">Rabat</option>
@@ -22,9 +22,9 @@
         </select>
     </div>
     <div class="button">
-        <button class="btn" data-serviceid="1" onclick="getEmployees(1)">Peinture</button>
-        <button class="btn" data-serviceid="2" onclick="getEmployees(2)">Plombiere</button>
-        <button class="btn" data-serviceid="3" onclick="getEmployees(3)">Revêtement</button>
+        <button class="btn" style="font-size: medium;" data-serviceid="1" onclick="getEmployees(1)">Peinture</button>
+        <button class="btn" style="font-size: medium;" data-serviceid="2" onclick="getEmployees(2)">Plombiere</button>
+        <button class="btn" style="font-size: medium;" data-serviceid="3" onclick="getEmployees(3)">Revêtement</button>
     </div>
     <div id="employeeList" class="employees">
         <div class="employee" th:each="emp:${employeurs}">
@@ -32,8 +32,8 @@
                 <img th:src="@{/images/employeur.png}" alt="employeur"> <!-- Fix th:href to th:src -->
             </div>
             <div class="emp_info">
-                <p th:text="${emp.nom + ' ' + emp.prenom}"></p>
-                <p th:text="${emp.numero}"></p>
+                <p style="font-family: Rund Display;" th:text="${emp.nom + ' ' + emp.prenom}"></p>
+                <p style="font-family: Rund Display;" th:text="${emp.numero}"></p>
             </div>
         </div>
     </div>

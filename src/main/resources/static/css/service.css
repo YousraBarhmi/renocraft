@@ -19,8 +19,8 @@
     font-size: 17px;
     line-height: 25px;
     text-align: justify;
-    font-family: 'Rund Display', sans-serif;
     font-weight: 500;
+    font-family: "Rund Display", sans-serif;
 }
 .service .select{
     margin: 2% 0;
@@ -42,7 +42,6 @@
     color: white;
     width: 33%;
     padding: 2%;
-    font-family: "Rund Display", sans-serif;
     text-decoration: none;
     transition: 0.2s ease-in-out;
     cursor:pointer;
@@ -59,4 +58,7 @@
     margin: 1% 16%;
     padding: 2%;
     border-bottom: 1px solid #201F25;
+}
+.service .employee .emp_info p{
+    font-family: "Rund Display", sans-serif;
 }
