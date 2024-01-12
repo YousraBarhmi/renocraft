@@ -40,14 +40,14 @@ public class RenoCraftController {
 
     //mapping
     @GetMapping("/")
-    public String welcomePage(HttpServletRequest request) {
-        HttpSession session = request.getSession();
+    public String welcomePage() {
+        /*HttpSession session = request.getSession();
         if (session != null && session.getAttribute("connexion") == null) {
             session.setAttribute("connexion", true);
 
             // Set the userName attribute in the session
             session.setAttribute("userName", "user");
-        }
+        }*/
         return "index";
     }
 
@@ -85,8 +85,13 @@ public class RenoCraftController {
     }
 
     @GetMapping ("/cart")
-    public String cartPage(){
-        return "cart";
+    public String cartPage(HttpServletRequest request){
+        HttpSession session = request.getSession();
+        if (session != null && session.getAttribute("connexion") != null && (boolean) session.getAttribute("connexion")) {
+            return "cart";
+        } else {
+            return "redirect:/signin";
+        }
     }
 
 
