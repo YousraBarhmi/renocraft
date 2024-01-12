@@ -172,7 +172,6 @@ public String getEmployeesByService(HttpServletRequest request,
             return "redirect:/signin";
         }
     }
-
     @GetMapping ("/profil")
     public String getProfil(HttpServletRequest request, Model model){
         HttpSession session = request.getSession();
