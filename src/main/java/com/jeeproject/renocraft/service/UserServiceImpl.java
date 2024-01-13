@@ -65,7 +65,6 @@ public class UserServiceImpl implements UserService {
         return false;
     }
 
-<<<<<<< HEAD
 
     @Override
     public void updateUser(String username, String name, String email, String phone) {
@@ -77,6 +76,4 @@ public class UserServiceImpl implements UserService {
             repo.save(user);
         });
     }
-=======
->>>>>>> ad028e689f2b47c71386162cfa9d623f1a7240ae
 }
