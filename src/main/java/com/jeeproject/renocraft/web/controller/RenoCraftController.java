@@ -360,18 +360,4 @@ public class RenoCraftController {
         }
     }
 
-    @GetMapping("/dashContact")
-    public String getDashContact(HttpServletRequest request, Model model) {
-        HttpSession session = request.getSession();
-        String user = (String) session.getAttribute("userName");
-        model.addAttribute("userNameDash", user);
-        if (session != null && session.getAttribute("connexion") != null && (boolean) session.getAttribute("connexion")&& user.equals("admin")) {
-            List<Contact> contacts = contactService.getContact();
-            model.addAttribute("contacts", contacts);
-            return "Dash/dashContact";
-        } else {
-            return "redirect:/signin";
-        }
-    }
-
 }

@@ -19,4 +19,6 @@ public interface UserService {
     public boolean editUser(User profil);
     public List<User> getClient();
     public boolean deleteClient(String username);
+
+    void updateUser(String username, String name, String email, String phone);
 }

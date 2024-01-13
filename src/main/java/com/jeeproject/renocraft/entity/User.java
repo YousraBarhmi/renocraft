@@ -1,9 +1,6 @@
 package com.jeeproject.renocraft.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -23,7 +20,7 @@ public class User {
     private String phone;
     private String password;
     private String cpassword;//confirmation
-    @OneToMany(mappedBy = "user")
+    @OneToMany(mappedBy = "user",cascade = CascadeType.REMOVE)
     private List<Commande> commandes;
 
     public int getOrderCount() {
