@@ -28,24 +28,53 @@
 .collectionproduit{
     display:flex;
     flex-direction: row;
-    padding-left:90px;
+    padding-left:75px;
     margin-top:40px;
 }
 .Collection{
-    width:45%;
-    height:95%;
+    width:47%;
+    height:100%;
 
 }
 .Collection img{
     width:100%;
 }
 .Produits{
-    margin-left:5%;
+    margin-left:8%;
     flex-direction: column;
     width:45%;
     height:6%;
 
 }
+.sousprd{
+    width:78.5%;
+    height:6%;
+}
 .sousprd img{
     width:100%;
+}
+.packbloc{
+    width:70%;
+    background-color: #201F25;
+    Height:45%;
+
+}
+.imgprd{
+    display:flex;
+    flex-direction:row;
+    margin:20px 10px;
+    width:35%;
+    padding:10px;
+
+}
+.imgprd img{
+    width:100%;
+    padding-right:30px;
+    border-radius:10px;
+}
+.fa-solid {
+    margin-left:85%;
+    font-size :30px;
+    color:#ffffff;
+    margin-top:20px;
 }

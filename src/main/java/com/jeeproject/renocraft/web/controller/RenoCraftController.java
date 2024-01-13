@@ -7,21 +7,19 @@ import com.jeeproject.renocraft.service.*;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 
-
-<<<<<<< HEAD
 import com.jeeproject.renocraft.entity.Contact;
 import com.jeeproject.renocraft.entity.Employeur;
 import com.jeeproject.renocraft.service.ContactService;
 import com.jeeproject.renocraft.service.EmployeurService;
 import com.jeeproject.renocraft.service.ServiceService;
 import jakarta.servlet.http.HttpServletRequest;
-=======
+
 import com.jeeproject.renocraft.entity.User;
 import com.jeeproject.renocraft.service.UserService;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.format.annotation.DateTimeFormat;
->>>>>>> 245bfe4adf5fc787fbac30dd2681d9945d1101cd
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -34,6 +32,8 @@ import java.util.Optional;
 
 @Controller
 public class RenoCraftController {
+    @Autowired
+    private  DashboardService dashboardService;
     @Autowired
     private UserService service;
     private final ContactService contactService;
@@ -274,6 +274,10 @@ public class RenoCraftController {
 
     @GetMapping("/dashHome")
     public String getDashHome(HttpServletRequest request, Model model) {
+        model.addAttribute("nbrclients",dashboardService.getNombreClients());
+        model.addAttribute("nbrcommandes",dashboardService.getNombreCommandes());
+        model.addAttribute("nbremployes",dashboardService.getNombreEmployes());
+        model.addAttribute("nbrcontacts",dashboardService.getNombreContacts());
         HttpSession session = request.getSession();
         String user = (String) session.getAttribute("userName");
         if (session != null && session.getAttribute("connexion") != null && (boolean) session.getAttribute("connexion")&& user.equals("admin")) {
