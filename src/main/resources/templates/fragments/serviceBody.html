@@ -14,7 +14,7 @@
             employeurs qui sont plus les proches de votre ville.</p>
     </div>
     <div class="select">
-        <select  name="city" id="city"  onchange="filterByCity()">
+        <select style="font-size: medium;"  name="city" id="city"  onchange="filterByCity()">
             <option value="all" th:selected="${city == null || city eq 'all'}">Sélectionner une ville</option>
             <option value="casablanca" th:selected="${city eq 'casablanca'}">Casablanca</option>
             <option value="rabat" th:selected="${city eq 'rabat'}">Rabat</option>
