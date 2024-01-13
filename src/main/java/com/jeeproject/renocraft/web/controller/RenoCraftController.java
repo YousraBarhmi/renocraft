@@ -226,14 +226,12 @@ public class RenoCraftController {
         }
     }
 
-
     @GetMapping("/signin")
     public ModelAndView signin() {
         ModelAndView mav = new ModelAndView("signin");
         mav.addObject("user", new User());
         return mav;
     }
-
 
     @PostMapping("/signin")
     public String signin(@ModelAttribute("user") User user, HttpServletRequest request) {
@@ -270,6 +268,8 @@ public class RenoCraftController {
         HttpSession session = request.getSession();
         String user = (String) session.getAttribute("userName");
         if (session != null && session.getAttribute("connexion") != null && (boolean) session.getAttribute("connexion")&& user.equals("admin")) {
+            List<User> clients = userService.getClient();
+            model.addAttribute("clients", clients);
             return "Dash/dashClient";
         } else {
             return "redirect:/signin";

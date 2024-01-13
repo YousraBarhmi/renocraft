@@ -11244,3 +11244,12 @@ body.sidebar-toggled footer.sticky-footer {
  .buttonLogOut:hover{
     color: darkred;
 }
+
+ .hover-green:hover {
+     fill: green;
+     cursor: pointer;
+ }
+.hover-red:hover {
+    fill: red;
+    cursor: pointer;
+}
