@@ -1,8 +1,6 @@
 package com.jeeproject.renocraft.service;
 
-import com.jeeproject.renocraft.entity.Employeur;
 import com.jeeproject.renocraft.repo.ServiceRepo;
-import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.jeeproject.renocraft.entity.Service;
@@ -22,14 +20,25 @@ public class ServiceServiceImpl implements ServiceService {
     }
 
     @Override
-    public Service getServiceById(Long Id)
+    public Optional<Service> getServiceById(Long Id)
     {
-        Optional<Service> optionalService = serviceRepo.findById(Id);
-        return optionalService.orElse(null);
+        return serviceRepo.findById(Id);
+
     }
 
     @Override
     public List<Service> getService() {
         return serviceRepo.findAll();
+    }
+
+    @Override
+    public void updateService(Long service_id, String nom, String description) {
+        Optional<Service> serviceOptional = serviceRepo.findById(service_id);
+        serviceOptional.ifPresent(service -> {
+            service.setId_service(service_id);
+            service.setNom(nom);
+            service.setDescription(description);
+            serviceRepo.save(service);
+        });
     }
 }

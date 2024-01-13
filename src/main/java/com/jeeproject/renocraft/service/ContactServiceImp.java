@@ -24,4 +24,9 @@ public class ContactServiceImp implements ContactService{
     public List<Contact> getContact() {
         return contactRepo.findAll();
     }
+
+    @Override
+    public int contactSize() {
+        return (int) contactRepo.count();
+    }
 }

@@ -370,4 +370,42 @@ public class RenoCraftController {
         return "redirect:/dashClient";
     }
 
+    @GetMapping("/dashContact")
+    public String getDashContact(HttpServletRequest request, Model model) {
+        HttpSession session = request.getSession();
+        String user = (String) session.getAttribute("userName");
+        model.addAttribute("userNameDash", user);
+        if (session != null && session.getAttribute("connexion") != null && (boolean) session.getAttribute("connexion")&& user.equals("admin")) {
+            List<Contact> contacts = contactService.getContact();
+            int size = contactService.contactSize();
+            model.addAttribute("contacts", contacts);
+            model.addAttribute("size", size);
+            return "Dash/dashContact";
+        } else {
+            return "redirect:/signin";
+        }
+    }
+
+    @GetMapping("/updateService")
+    public String getUpService(HttpServletRequest request, Model model,@RequestParam("userparam") Long id) {
+        HttpSession session = request.getSession();
+        String user = (String) session.getAttribute("userName");
+        model.addAttribute("userNameDash", user);
+        if (session != null && session.getAttribute("connexion") != null && (boolean) session.getAttribute("connexion")&& user.equals("admin")) {
+            Optional<Service> serviceModif = serviceService.getServiceById(id);
+            model.addAttribute("serviceModif", serviceModif);
+            return "Dash/dashServiceUpdate";
+        } else {
+            return "redirect:/signin";
+        }
+    }
+    @PostMapping("/updateFormService")
+    public String updateFormServiceMeth(@RequestParam("name") String nom,
+                                        @RequestParam("description") String description,
+                                        @RequestParam("id_service") Long service_id) {
+        serviceService.updateService(service_id, nom, description);
+        return "redirect:/dashService";
+    }
+
+
 }
