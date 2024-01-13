@@ -35,24 +35,24 @@
 
             </div>
             <div class="cont4">
-                <form method="post" th:object="${commande}" th:action="@{/commande}">
+                <form method="post" th:object="${cart}" th:action="@{/cart}" >
                     <div>
                     <label for="tel">Numéro de Téléphone : </label>
                     <br>
-                    <input type="text" required class="inputlong" id="tel" name="tel" disabled ></div>
-                    
+                        <input type="hidden" name="packIds" id="idsInput">
+                    <input type="text" required class="inputlong" id="tel" name="tel" disabled th:value="${cart.get().getPhone()}"></div>
                     <div class="groupdeinput">
                         <div class="inputgroup1">
                         <label for="date">Date :</label><br>
-                        <input type="date" required id="date" name="date">
+                        <input type="date" required id="date" name="dateCommande">
                         </div>
                         <div class="inputgroup2">
                         <label for="heure">Heure :</label><br>
-                        <input type="time" required id="heure" name="heure">
+                        <input type="time" required id="heure" name="heureCommande">
                         </div>
                     </div>
                     <div class="subdiv">
-                        <input type="submit" value="Envoyer" class="subinput">
+                        <input type="submit" value="Envoyer" class="subinput" onclick="validMessage()">
                     </div>
                 </form>
             </div>
@@ -98,6 +98,18 @@
         const stade = document.getElementById("popVerif");
         stade.style.display="block";
         filtre.style.display="block";
+        let panier5 = JSON.parse(localStorage.getItem("panierrenocraft"));
+        let ids = [];
+        for(let i=0;i<panier5.length;i++){
+            ids.push(panier5[i].id);
+        }
+        document.getElementById("idsInput").value = ids;
+        console.log(ids);
+    };
+
+    const validMessage= () => {
+        localStorage.setItem("panierrenocraft",JSON.stringify([]));
+        update();
     };
 
     function closeVerif(){
@@ -136,6 +148,7 @@
         else{
             msgvide.style.display="block";
             cartcont.innerHTML=`<p id="msgvide" class="pmesg">Votre Panier est Vide</p>`;
+
             let btnaclass = document.getElementById('btnid');
             btnaclass.innerHTML="";
         }

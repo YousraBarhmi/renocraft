@@ -2,30 +2,24 @@ package com.jeeproject.renocraft.web.controller;
 
 
 
-import com.jeeproject.renocraft.entity.User;
-import com.jeeproject.renocraft.service.UserService;
+import com.jeeproject.renocraft.entity.*;
+import com.jeeproject.renocraft.service.*;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 
 
-import com.jeeproject.renocraft.entity.Contact;
-import com.jeeproject.renocraft.entity.Employeur;
 import com.jeeproject.renocraft.entity.User;
-import com.jeeproject.renocraft.service.ContactService;
-import com.jeeproject.renocraft.service.EmployeurService;
-import com.jeeproject.renocraft.service.ServiceService;
 import com.jeeproject.renocraft.service.UserService;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
@@ -38,15 +32,19 @@ public class RenoCraftController {
     private final EmployeurService employeurService;
     private final ServiceService serviceService;
     private final UserService userService;
+    private final CommandeService commandeService;
+    private final PackService packService;
     private Long actualServiceId = 1L;
     public RenoCraftController(ContactService contactService,
                                EmployeurService employeurService,
                                ServiceService serviceService,
-                               UserService userService) {
+                               UserService userService,CommandeService commandeService,PackService packService) {
         this.contactService = contactService;
         this.employeurService = employeurService;
         this.serviceService = serviceService;
         this.userService = userService;
+        this.commandeService=commandeService;
+        this.packService=packService;
     }
 
 
@@ -111,14 +109,48 @@ public class RenoCraftController {
         }
 
         @GetMapping ("/cart")
-        public String cartPage(HttpServletRequest request){
+        public String cartPage(HttpServletRequest request, Model model){
             HttpSession session = request.getSession();
             if (session != null && session.getAttribute("connexion") != null && (boolean) session.getAttribute("connexion")) {
+                String user = (String) session.getAttribute("userName");
+                Optional<User> cart = userService.getUser(user);
+                model.addAttribute("cart", cart);
                 return "cart";
             } else {
                 return "redirect:/signin";
             }
         }
+
+    @PostMapping ("/cart")
+    public String processCommande(@RequestParam("dateCommande") @DateTimeFormat(pattern = "yyyy-MM-dd") Date dateCommande,
+                                  @RequestParam("heureCommande") @DateTimeFormat(pattern = "HH:mm") Date heureCommande,
+                                  @RequestParam("packIds") List<Long> packIds,
+                                  @SessionAttribute("userName") String username){
+        Optional<User> optionalUser = userService.getUser(username);
+
+        if (optionalUser.isPresent()) {
+            User user = optionalUser.get();
+
+
+            Commande commande = new Commande();
+            commande.setUser(user);
+            commande.setDateCommande(dateCommande);
+            commande.setHeureCommande(heureCommande);
+
+
+            List<Pack> packs = packService.findPacksByIds(packIds);
+            commande.setPacks(packs);
+
+
+            commandeService.addCommande(commande);
+
+
+            return "redirect:/cart";
+        }
+        else{
+            return "redirect:/error";
+        }
+    }
 
 
 
