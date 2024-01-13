@@ -278,11 +278,13 @@ public class RenoCraftController {
         }
     }
     @GetMapping("/updateClient")
-    public String getUpClient(HttpServletRequest request, Model model) {
+    public String getUpClient(HttpServletRequest request, Model model,@RequestParam("userparam") String userparam) {
         HttpSession session = request.getSession();
         String user = (String) session.getAttribute("userName");
         model.addAttribute("userNameDash", user);
         if (session != null && session.getAttribute("connexion") != null && (boolean) session.getAttribute("connexion")&& user.equals("admin")) {
+            Optional<User> userModif = userService.getUser(userparam);
+            model.addAttribute("userModif", userModif);
             return "Dash/dashClientUpdate";
         } else {
             return "redirect:/signin";
@@ -306,8 +308,16 @@ public class RenoCraftController {
     
     @PostMapping("/suppUser")
     public String deleteUserDash(@RequestParam("usernameparam") String usernameparam) {
-        System.out.println("testtt   !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! "+usernameparam);
         userService.deleteClient(usernameparam);
+        return "redirect:/dashClient";
+    }
+
+    @PostMapping("/updateFormUser")
+    public String updateFormUserMeth(@RequestParam("name") String name,
+                                     @RequestParam("usernamechamp") String usernamechamp,
+                                     @RequestParam("email") String email,
+                                     @RequestParam("phone") String phone) {
+        userService.updateUser(usernamechamp, name, email, phone);
         return "redirect:/dashClient";
     }
 

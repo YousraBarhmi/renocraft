@@ -2,6 +2,7 @@ package com.jeeproject.renocraft.service;
 
 import com.jeeproject.renocraft.entity.User;
 import com.jeeproject.renocraft.repo.UserRepo;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -62,5 +63,17 @@ public class UserServiceImpl implements UserService {
                 return true;
             }
             return false;
+    }
+
+
+    @Override
+    public void updateUser(String username, String name, String email, String phone) {
+        Optional<User> userOptional = repo.findById(username);
+        userOptional.ifPresent(user -> {
+            user.setName(name);
+            user.setEmail(email);
+            user.setPhone(phone);
+            repo.save(user);
+        });
     }
 }
