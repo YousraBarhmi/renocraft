@@ -11253,11 +11253,11 @@ body.sidebar-toggled footer.sticky-footer {
     fill: red;
     cursor: pointer;
 }
-button.modifCl{
+button.modifCl, #ajouter{
     color: white;
     background: #201F25;
 }
 
-button.modifCl:hover{
+button.modifCl:hover,#ajouter:hover {
     background-color: rgba(32, 31, 37, 0.9);
 }
