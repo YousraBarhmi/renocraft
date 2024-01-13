@@ -54,13 +54,14 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-        public boolean deleteClient(String username) {
-            Optional<User> userToDelete = repo.findById(username);
-            if (userToDelete.isPresent()) {
-                User deletedUser = userToDelete.get();
-                repo.delete(deletedUser);
-                return true;
-            }
-            return false;
+    public boolean deleteClient(String username) {
+        Optional<User> userToDelete = repo.findById(username);
+        if (userToDelete.isPresent()) {
+            User deletedUser = userToDelete.get();
+            repo.delete(deletedUser);
+            return true;
+        }
+        return false;
     }
+
 }

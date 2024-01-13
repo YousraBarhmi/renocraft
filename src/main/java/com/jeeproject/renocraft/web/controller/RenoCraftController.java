@@ -339,12 +339,13 @@ public class RenoCraftController {
         }
     }
 
-    
+
     @PostMapping("/suppUser")
-    public String deleteUserDash(@RequestParam("usernameparam") String usernameparam) {
-        System.out.println("testtt   !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! "+usernameparam);
-        userService.deleteClient(usernameparam);
+    public String deleteUserDash(@RequestParam("username") String username) {
+        System.out.println("Deleting user with username: " + username);
+        userService.deleteClient(username);
         return "redirect:/dashClient";
     }
+
 
 }
