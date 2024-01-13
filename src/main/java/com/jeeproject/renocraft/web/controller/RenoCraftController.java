@@ -39,6 +39,7 @@ public class RenoCraftController {
     private final ServiceService serviceService;
     private final UserService userService;
     private Long actualServiceId = 1L;
+
     public RenoCraftController(ContactService contactService,
                                EmployeurService employeurService,
                                ServiceService serviceService,
@@ -50,80 +51,62 @@ public class RenoCraftController {
     }
 
 
+    //mapping
+    @GetMapping("/")
+    public String welcomePage() {
+        return "index";
+    }
 
 
-
-
-
-        //mapping
-        @GetMapping("/")
-        public String welcomePage() {
-        /*HttpSession session = request.getSession();
-        if (session != null && session.getAttribute("connexion") == null) {
-            session.setAttribute("connexion", true);
-
-            // Set the userName attribute in the session
-            session.setAttribute("userName", "user");
-        }*/
-
-            return "index";
-        }
-
-
-
-    @GetMapping ("/signup")
-    public String register(Model model){
-        User user=new User();
-        model.addAttribute("user",user);
+    @GetMapping("/signup")
+    public String register(Model model) {
+        User user = new User();
+        model.addAttribute("user", user);
         return "signup";
     }
 
 
-        @PostMapping("/registerUser")
-        public String registerUser(@ModelAttribute("user") User user, Model model) {
-            if (service.usernameExists(user.getUsername())) {
-                model.addAttribute("usernameExists", true);
-                return "signup";
-            }
-            service.registerUser(user);
-            return "signin";
+    @PostMapping("/registerUser")
+    public String registerUser(@ModelAttribute("user") User user, Model model) {
+        if (service.usernameExists(user.getUsername())) {
+            model.addAttribute("usernameExists", true);
+            return "signup";
         }
-        @GetMapping ("/success")
-        public String successPage(){
-            return "success";
-        }
+        service.registerUser(user);
+        return "signin";
+    }
 
-        @GetMapping ("/packs")
-        public String packsPage(HttpServletRequest request){
-            HttpSession session = request.getSession();
-            if (session != null && session.getAttribute("connexion") != null && (boolean) session.getAttribute("connexion")) {
-                return "pack";
-            } else {
-                return "redirect:/signin";
-            }
-        }
+    @GetMapping("/success")
+    public String successPage() {
+        return "success";
+    }
 
-        @GetMapping("/logout")
-        public String logout(HttpServletRequest request) {
-            HttpSession session = request.getSession();
-            session.invalidate();
+    @GetMapping("/packs")
+    public String packsPage(HttpServletRequest request) {
+        HttpSession session = request.getSession();
+        if (session != null && session.getAttribute("connexion") != null && (boolean) session.getAttribute("connexion")) {
+            return "pack";
+        } else {
             return "redirect:/signin";
         }
+    }
 
-        @GetMapping ("/cart")
-        public String cartPage(HttpServletRequest request){
-            HttpSession session = request.getSession();
-            if (session != null && session.getAttribute("connexion") != null && (boolean) session.getAttribute("connexion")) {
-                return "cart";
-            } else {
-                return "redirect:/signin";
-            }
+    @GetMapping("/logout")
+    public String logout(HttpServletRequest request) {
+        HttpSession session = request.getSession();
+        session.invalidate();
+        return "redirect:/signin";
+    }
+
+    @GetMapping("/cart")
+    public String cartPage(HttpServletRequest request) {
+        HttpSession session = request.getSession();
+        if (session != null && session.getAttribute("connexion") != null && (boolean) session.getAttribute("connexion")) {
+            return "cart";
+        } else {
+            return "redirect:/signin";
         }
-
-
-
-
-
+    }
 
 
     //controle service
@@ -139,31 +122,31 @@ public class RenoCraftController {
         return "redirect:/success";
     }
 
-@GetMapping("/service")
-public String getEmployeesByService(HttpServletRequest request,
-        @RequestParam(required = false) Long serviceId,
-        @RequestParam(required = false) String city,
-        Model model) {
-    HttpSession session = request.getSession();
-    if (session != null && session.getAttribute("connexion") != null && (boolean) session.getAttribute("connexion")) {
-        actualServiceId = (serviceId != null) ? serviceId : actualServiceId;
-        List<Employeur> employeurs;
+    @GetMapping("/service")
+    public String getEmployeesByService(HttpServletRequest request,
+                                        @RequestParam(required = false) Long serviceId,
+                                        @RequestParam(required = false) String city,
+                                        Model model) {
+        HttpSession session = request.getSession();
+        if (session != null && session.getAttribute("connexion") != null && (boolean) session.getAttribute("connexion")) {
+            actualServiceId = (serviceId != null) ? serviceId : actualServiceId;
+            List<Employeur> employeurs;
 
-        if (city == null) {
-            employeurs = employeurService.getEmployeurByService(actualServiceId);
+            if (city == null) {
+                employeurs = employeurService.getEmployeurByService(actualServiceId);
+            } else {
+                employeurs = employeurService.getEmployeurByServiceCity(actualServiceId, city);
+            }
+            model.addAttribute("employeurs", employeurs);
+            model.addAttribute("actualServiceId", actualServiceId); // Adding actualServiceId to the model
+            return "service";
         } else {
-            employeurs = employeurService.getEmployeurByServiceCity(actualServiceId, city);
+            return "redirect:/signin";
         }
-        model.addAttribute("employeurs", employeurs);
-        model.addAttribute("actualServiceId", actualServiceId); // Adding actualServiceId to the model
-        return "service";
-    } else {
-        return "redirect:/signin";
     }
-}
 
-    @GetMapping ("/home")
-    public String homeAfterConn(HttpServletRequest request){
+    @GetMapping("/home")
+    public String homeAfterConn(HttpServletRequest request) {
         HttpSession session = request.getSession();
         if (session != null && session.getAttribute("connexion") != null && (boolean) session.getAttribute("connexion")) {
 
@@ -172,8 +155,9 @@ public String getEmployeesByService(HttpServletRequest request,
             return "redirect:/signin";
         }
     }
-    @GetMapping ("/profil")
-    public String getProfil(HttpServletRequest request, Model model){
+
+    @GetMapping("/profil")
+    public String getProfil(HttpServletRequest request, Model model) {
         HttpSession session = request.getSession();
         if (session != null && session.getAttribute("connexion") != null && (boolean) session.getAttribute("connexion")) {
             String user = (String) session.getAttribute("userName");
@@ -184,6 +168,7 @@ public String getEmployeesByService(HttpServletRequest request,
             return "redirect:/signin";
         }
     }
+
     @PostMapping("/profil")
     public String editProfile(@ModelAttribute("profil") User updatedUser) {
         // Perform the user profile update
@@ -201,9 +186,8 @@ public String getEmployeesByService(HttpServletRequest request,
     }
 
 
-    @GetMapping ("/signin")
-    public ModelAndView signin()
-    {
+    @GetMapping("/signin")
+    public ModelAndView signin() {
         ModelAndView mav = new ModelAndView("signin");
         mav.addObject("user", new User());
         return mav;
@@ -215,14 +199,39 @@ public String getEmployeesByService(HttpServletRequest request,
         HttpSession session = request.getSession();
         User oauthUser = service.signin(user.getUsername(), user.getPassword());
         System.out.println(oauthUser);
-        if (session != null  && oauthUser != null) {
+        if (session != null && oauthUser != null) {
             session.setAttribute("connexion", true);
-            session.setAttribute("userName", oauthUser.getUsername());
-            return "redirect:/home";
+            String userName = oauthUser.getUsername();
+            session.setAttribute("userName", userName);
+            if (userName.equals("admin")) {
+                return "redirect:/dashHome";
+            } else {
+                return "redirect:/home";
+            }
         } else {
             return "redirect:/signin-error";
         }
     }
 
-}
+    @GetMapping("/dashHome")
+    public String getDashHome(HttpServletRequest request, Model model) {
+        HttpSession session = request.getSession();
+        String user = (String) session.getAttribute("userName");
+        if (session != null && session.getAttribute("connexion") != null && (boolean) session.getAttribute("connexion")&& user.equals("admin")) {
+            return "Dash/dashHome";
+        } else {
+            return "redirect:/signin";
+        }
+    }
 
+    @GetMapping("/dashClient")
+    public String getDashClients(HttpServletRequest request, Model model) {
+        HttpSession session = request.getSession();
+        String user = (String) session.getAttribute("userName");
+        if (session != null && session.getAttribute("connexion") != null && (boolean) session.getAttribute("connexion")&& user.equals("admin")) {
+            return "Dash/dashClient";
+        } else {
+            return "redirect:/signin";
+        }
+    }
+}
