@@ -24,4 +24,9 @@ public class PackServiceImp implements PackService{
     public List<Pack> findPacksByIds(List<Long> packIds) {
         return packRepo.findAllById(packIds);
     }
+
+    @Override
+    public List<Pack> selectPacks() {
+        return packRepo.findAll();
+    }
 }

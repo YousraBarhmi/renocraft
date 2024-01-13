@@ -288,4 +288,18 @@ public class RenoCraftController {
         }
     }
 
+    @GetMapping("/dashPack")
+    public String getDashPack(HttpServletRequest request, Model model) {
+        HttpSession session = request.getSession();
+        String user = (String) session.getAttribute("userName");
+        model.addAttribute("userNameDash", user);
+        if (session != null && session.getAttribute("connexion") != null && (boolean) session.getAttribute("connexion")&& user.equals("admin")) {
+            List<Pack> packs = packService.selectPacks();
+            model.addAttribute("packs", packs);
+            return "Dash/dashPack";
+        } else {
+            return "redirect:/signin";
+        }
+    }
+
 }
