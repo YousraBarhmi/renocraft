@@ -89,7 +89,7 @@ public class RenoCraftController {
         }
     }
 
-<<<<<<< HEAD
+
         @GetMapping ("/cart")
         public String cartPage(HttpServletRequest request, Model model){
             HttpSession session = request.getSession();
@@ -138,7 +138,7 @@ public class RenoCraftController {
 
 
 
-=======
+
     @GetMapping("/logout")
     public String logout(HttpServletRequest request) {
         HttpSession session = request.getSession();
@@ -146,16 +146,8 @@ public class RenoCraftController {
         return "redirect:/signin";
     }
 
-    @GetMapping("/cart")
-    public String cartPage(HttpServletRequest request) {
-        HttpSession session = request.getSession();
-        if (session != null && session.getAttribute("connexion") != null && (boolean) session.getAttribute("connexion")) {
-            return "cart";
-        } else {
-            return "redirect:/signin";
-        }
-    }
->>>>>>> 1abe2a5944ff990979ae0a078f3e91a9865712e6
+    
+
 
 
     //controle service
