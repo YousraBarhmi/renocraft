@@ -1,0 +1,51 @@
+.Content {
+    background-color: #E3E3E3;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 80px;
+    font-family: "Rund Display", sans-serif;
+    align-items:center;
+    text-align:center;
+
+}
+.Content h2{
+    color: #201F25;
+    font-size: 39px;
+    padding-bottom: 40px;
+    font-family: "Rund Display", sans-serif;
+
+    padding-top: 120px;
+}
+
+.Content p{
+    color: #201F25;
+    font-size: 18px;
+    font-family: "Rund Display", sans-serif;
+    margin-bottom: 25px;
+}
+
+.collectionproduit{
+    display:flex;
+    flex-direction: row;
+    padding-left:90px;
+    margin-top:40px;
+}
+.Collection{
+    width:45%;
+    height:95%;
+
+}
+.Collection img{
+    width:100%;
+}
+.Produits{
+    margin-left:5%;
+    flex-direction: column;
+    width:45%;
+    height:6%;
+
+}
+.sousprd img{
+    width:100%;
+}

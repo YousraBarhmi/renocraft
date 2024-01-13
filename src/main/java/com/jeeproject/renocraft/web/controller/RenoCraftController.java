@@ -10,13 +10,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import com.jeeproject.renocraft.entity.Contact;
 import com.jeeproject.renocraft.entity.Employeur;
-import com.jeeproject.renocraft.entity.User;
 import com.jeeproject.renocraft.service.ContactService;
 import com.jeeproject.renocraft.service.EmployeurService;
 import com.jeeproject.renocraft.service.ServiceService;
-import com.jeeproject.renocraft.service.UserService;
 import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -27,7 +24,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 
 @Controller
@@ -119,6 +115,15 @@ public class RenoCraftController {
                 return "redirect:/signin";
             }
         }
+    @GetMapping ("/CollectionsProduits")
+    public String CollectionsPage(HttpServletRequest request){
+        HttpSession session = request.getSession();
+        if (session != null && session.getAttribute("connexion") != null && (boolean) session.getAttribute("connexion")) {
+            return "CollectionsProduits";
+        } else {
+            return "redirect:/signin";
+        }
+    }
 
 
 
