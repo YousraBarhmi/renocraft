@@ -346,6 +346,18 @@ public class RenoCraftController {
         userService.deleteClient(username);
         return "redirect:/dashClient";
     }
-
+    @GetMapping("/dashService")
+    public String getDashService(HttpServletRequest request, Model model) {
+        HttpSession session = request.getSession();
+        String user = (String) session.getAttribute("userName");
+        model.addAttribute("userNameDash", user);
+        if (session != null && session.getAttribute("connexion") != null && (boolean) session.getAttribute("connexion")&& user.equals("admin")) {
+            List<Service> services = serviceService.getService();
+            model.addAttribute("services", services);
+            return "Dash/dashService";
+        } else {
+            return "redirect:/signin";
+        }
+    }
 
 }

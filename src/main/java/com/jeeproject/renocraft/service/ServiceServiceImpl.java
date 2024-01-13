@@ -28,4 +28,8 @@ public class ServiceServiceImpl implements ServiceService {
         return optionalService.orElse(null);
     }
 
+    @Override
+    public List<Service> getService() {
+        return serviceRepo.findAll();
+    }
 }

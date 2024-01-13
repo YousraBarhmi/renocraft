@@ -8,4 +8,5 @@ import java.util.Optional;
 
 public interface ServiceService {
     Service getServiceById(Long id);
+    List<Service> getService();
 }
