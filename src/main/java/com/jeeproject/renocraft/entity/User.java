@@ -29,4 +29,15 @@ public class User {
     public int getOrderCount() {
         return commandes != null ? commandes.size() : 0;
     }
+    @Override
+    public String toString() {
+        return "User{" +
+                "name='" + name + '\'' +
+                ", username='" + username + '\'' +
+                ", email='" + email + '\'' +
+                ", phone='" + phone + '\'' +
+                ", password='" + password + '\'' +
+                ", cpassword='" + cpassword + '\'' +
+                '}';
+    }
 }
