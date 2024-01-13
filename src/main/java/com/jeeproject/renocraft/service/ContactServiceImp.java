@@ -4,6 +4,8 @@ import com.jeeproject.renocraft.entity.Contact;
 import com.jeeproject.renocraft.repo.ContactRepo;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class ContactServiceImp implements ContactService{
 
@@ -16,5 +18,10 @@ public class ContactServiceImp implements ContactService{
     @Override
     public void addContact(Contact contact){
         contactRepo.save(contact);
+    }
+
+    @Override
+    public List<Contact> getContact() {
+        return contactRepo.findAll();
     }
 }
