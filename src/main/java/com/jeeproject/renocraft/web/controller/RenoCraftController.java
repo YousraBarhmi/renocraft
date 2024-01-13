@@ -243,14 +243,12 @@ public class RenoCraftController {
         }
     }
 
-
     @GetMapping("/signin")
     public ModelAndView signin() {
         ModelAndView mav = new ModelAndView("signin");
         mav.addObject("user", new User());
         return mav;
     }
-
 
     @PostMapping("/signin")
     public String signin(@ModelAttribute("user") User user, HttpServletRequest request) {
@@ -280,6 +278,7 @@ public class RenoCraftController {
         model.addAttribute("nbrcontacts",dashboardService.getNombreContacts());
         HttpSession session = request.getSession();
         String user = (String) session.getAttribute("userName");
+        model.addAttribute("userNameDash", user);
         if (session != null && session.getAttribute("connexion") != null && (boolean) session.getAttribute("connexion")&& user.equals("admin")) {
             return "Dash/dashHome";
         } else {
@@ -291,10 +290,61 @@ public class RenoCraftController {
     public String getDashClients(HttpServletRequest request, Model model) {
         HttpSession session = request.getSession();
         String user = (String) session.getAttribute("userName");
+        model.addAttribute("userNameDash", user);
         if (session != null && session.getAttribute("connexion") != null && (boolean) session.getAttribute("connexion")&& user.equals("admin")) {
+            List<User> clients = userService.getClient();
+            model.addAttribute("clients", clients);
             return "Dash/dashClient";
         } else {
             return "redirect:/signin";
         }
     }
+    @GetMapping("/updateClient")
+    public String getUpClient(HttpServletRequest request, Model model) {
+        HttpSession session = request.getSession();
+        String user = (String) session.getAttribute("userName");
+        model.addAttribute("userNameDash", user);
+        if (session != null && session.getAttribute("connexion") != null && (boolean) session.getAttribute("connexion")&& user.equals("admin")) {
+            return "Dash/dashClientUpdate";
+        } else {
+            return "redirect:/signin";
+        }
+    }
+
+    @GetMapping("/dashPack")
+    public String getDashPack(HttpServletRequest request, Model model) {
+        HttpSession session = request.getSession();
+        String user = (String) session.getAttribute("userName");
+        model.addAttribute("userNameDash", user);
+        if (session != null && session.getAttribute("connexion") != null && (boolean) session.getAttribute("connexion")&& user.equals("admin")) {
+            List<Pack> packs = packService.selectPacks();
+            model.addAttribute("packs", packs);
+            return "Dash/dashPack";
+        } else {
+            return "redirect:/signin";
+        }
+    }
+
+    @GetMapping("/dashEmployeur")
+    public String getDashEmployeur(HttpServletRequest request, Model model) {
+        HttpSession session = request.getSession();
+        String user = (String) session.getAttribute("userName");
+        model.addAttribute("userNameDash", user);
+        if (session != null && session.getAttribute("connexion") != null && (boolean) session.getAttribute("connexion")&& user.equals("admin")) {
+            List<Employeur> employeurs = employeurService.getEmployeur();
+            model.addAttribute("employeurs", employeurs);
+            return "Dash/dashEmp";
+        } else {
+            return "redirect:/signin";
+        }
+    }
+
+    
+    @PostMapping("/suppUser")
+    public String deleteUserDash(@RequestParam("usernameparam") String usernameparam) {
+        System.out.println("testtt   !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! "+usernameparam);
+        userService.deleteClient(usernameparam);
+        return "redirect:/dashClient";
+    }
+
 }

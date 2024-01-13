@@ -24,5 +24,8 @@ public class Employeur {
     @ManyToOne
     @JoinColumn(name = "id_service")
     private Service service;
+    public String getService() {
+        return service.getNom();
+    }
 
 }
