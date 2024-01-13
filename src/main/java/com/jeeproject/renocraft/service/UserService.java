@@ -18,4 +18,5 @@ public interface UserService {
     public Optional<User> getUser(String userName);
     public boolean editUser(User profil);
     public List<User> getClient();
+    public boolean deleteClient(String username);
 }

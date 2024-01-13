@@ -52,4 +52,15 @@ public class UserServiceImpl implements UserService {
     public List<User> getClient(){
         return repo.selectClient();
     }
+
+    @Override
+        public boolean deleteClient(String username) {
+            Optional<User> userToDelete = repo.findById(username);
+            if (userToDelete.isPresent()) {
+                User deletedUser = userToDelete.get();
+                repo.delete(deletedUser);
+                return true;
+            }
+            return false;
+    }
 }
