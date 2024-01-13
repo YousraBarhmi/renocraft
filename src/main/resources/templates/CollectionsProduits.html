@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="icon" th:href="@{images/logorenocraft.png}" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#201F25" />
+    <meta name="author" content="-YE- -JS- -YB-" />
+    <meta name="description" content="Application JEE de Rénovation -RenoCraft-"/>
+    <link rel="stylesheet" th:href="@{https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css}">
+    <link rel="stylesheet" th:href="@{css/general.css}" />
+    <link rel="stylesheet" th:href="@{css/packpage.css}" />
+    <link rel="stylesheet" th:href="@{css/header.css}" />
+    <link rel="stylesheet" th:href="@{css/collection.css}" />
+    <link rel="stylesheet" th:href="@{css/colab.css}" />
+    <link rel="stylesheet" th:href="@{css/contact.css}" />
+    <link rel="stylesheet" th:href="@{css/footer.css}" />
+    <title>Packs</title>
+</head>
+<body>
+<div th:insert="~{fragments/header2 :: header}"></div>
+<div class="Content">
+    <h2>Collections et Produits</h2>
+    <p>Découvrez un échantillon de nos produits de haute qualité soigneusement sélectionnés pour vos projets de rénovation.</p>
+    <div class="collectionproduit">
+        <div class="Collection">
+            <img th:src="@{/images/Collection.png}" alt="food.jpg"/>
+        </div>
+        <div class="Produits">
+            <div class="parquet">
+                <!--pop up-->
+                <div class="sousprd" id="souspack1">
+
+                    <img th:src="@{/images/parquet.png}" alt="pack.png" onclick="popup()" class="imgpack">
+
+                </div>
+            </div>
+            <div class="carrelage">
+                <!--pop up-->
+
+                <div class="sousprd" id="souspack2">
+                    <img th:src="@{/images/carrelage.png}" onclick="popup1()" alt="pack.png" class="imgpack">
+
+                </div>
+            </div>
+            <div class="peinture">
+                <div class="sousprd" id="souspack3">
+
+                    <img th:src="@{/images/peintures.png}" alt="pack.png"  onclick="popup2()" class="imgpack">
+                </div>
+            </div>
+        </div>
+        <!--pop up-->
+        <div class="overlay2" id="filtre1"></div>
+        <div class="packbloc" id="pop1">
+            <i class="fa-solid fa-xmark" onclick="close2()"></i>
+            <div class="imgprd">
+                <img th:src="@{/images/prd1.png}" alt="food.jpg"/>
+                <img th:src="@{/images/prd2.png}" alt="food.jpg"/>
+                <img th:src="@{/images/prd3.png}" alt="food.jpg"/>
+            </div>
+        </div>
+        <!--pop up-->
+        <!--pop up-->
+        <div class="overlay2" id="filtre2"></div>
+        <div class="packbloc" id="pop2">
+            <i class="fa-solid fa-xmark" onclick="close3()"></i>
+            <div class="imgprd">
+                <img th:src="@{/images/prd4.png}" alt="food.jpg"/>
+                <img th:src="@{/images/prd5.png}" alt="food.jpg"/>
+                <img th:src="@{/images/prd6.png}" alt="food.jpg"/>
+            </div>
+        </div>
+        <!--pop up-->
+        <!--pop up-->
+        <div class="overlay2" id="filtre3"></div>
+        <div class="packbloc" id="pop3">
+            <i class="fa-solid fa-xmark" onclick="close4()"></i>
+            <div class="imgprd">
+                <img th:src="@{/images/prd7.png}" alt="food.jpg"/>
+                <img th:src="@{/images/prd8.png}" alt="food.jpg"/>
+                <img th:src="@{/images/prd9.png}" alt="food.jpg"/>
+            </div>
+        </div>
+    </div>
+
+
+</div>
+<div th:insert="~{fragments/colab :: colab}"></div>
+<div th:insert="~{fragments/contact :: contact}"></div>
+<div th:insert="~{fragments/footer :: footer}"></div>
+
+<script>
+
+
+
+
+
+
+
+    //pop up
+    const popup = ()=>{
+        const filtre = document.getElementById("filtre2");
+        const stade = document.getElementById("pop1");
+        stade.style.display="block";
+        filtre.style.display="block";
+    };
+
+    function close2(){
+        const filtre2 = document.getElementById("filtre2");
+        const stade2 = document.getElementById("pop1");
+        stade2.style.display="none";
+        filtre2.style.display="none";
+    }
+
+    const popup1 = ()=>{
+        const filtre = document.getElementById("filtre2");
+        const stade = document.getElementById("pop2");
+        stade.style.display="block";
+        filtre.style.display="block";
+    };
+
+    function close3(){
+        const filtre2 = document.getElementById("filtre2");
+        const stade2 = document.getElementById("pop2");
+        stade2.style.display="none";
+        filtre2.style.display="none";
+    }
+
+    const popup2 = ()=>{
+        const filtre = document.getElementById("filtre2");
+        const stade = document.getElementById("pop3");
+        stade.style.display="block";
+        filtre.style.display="block";
+    };
+
+    function close4(){
+        const filtre2 = document.getElementById("filtre2");
+        const stade2 = document.getElementById("pop3");
+        stade2.style.display="none";
+        filtre2.style.display="none";
+    }
+
+</script>
+</body>
+</html>

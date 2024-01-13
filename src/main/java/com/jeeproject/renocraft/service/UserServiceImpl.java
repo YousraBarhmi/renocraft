@@ -55,16 +55,17 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-        public boolean deleteClient(String username) {
-            Optional<User> userToDelete = repo.findById(username);
-            if (userToDelete.isPresent()) {
-                User deletedUser = userToDelete.get();
-                repo.delete(deletedUser);
-                return true;
-            }
-            return false;
+    public boolean deleteClient(String username) {
+        Optional<User> userToDelete = repo.findById(username);
+        if (userToDelete.isPresent()) {
+            User deletedUser = userToDelete.get();
+            repo.delete(deletedUser);
+            return true;
+        }
+        return false;
     }
 
+<<<<<<< HEAD
 
     @Override
     public void updateUser(String username, String name, String email, String phone) {
@@ -76,4 +77,6 @@ public class UserServiceImpl implements UserService {
             repo.save(user);
         });
     }
+=======
+>>>>>>> ad028e689f2b47c71386162cfa9d623f1a7240ae
 }

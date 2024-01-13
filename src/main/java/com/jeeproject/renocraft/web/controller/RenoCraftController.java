@@ -7,12 +7,19 @@ import com.jeeproject.renocraft.service.*;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import com.jeeproject.renocraft.entity.Contact;
+import com.jeeproject.renocraft.entity.Employeur;
+import com.jeeproject.renocraft.service.ContactService;
+import com.jeeproject.renocraft.service.EmployeurService;
+import com.jeeproject.renocraft.service.ServiceService;
+import jakarta.servlet.http.HttpServletRequest;
 
 import com.jeeproject.renocraft.entity.User;
 import com.jeeproject.renocraft.service.UserService;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.format.annotation.DateTimeFormat;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -21,11 +28,12 @@ import org.springframework.web.servlet.ModelAndView;
 
 import java.util.Date;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 
 @Controller
 public class RenoCraftController {
+    @Autowired
+    private  DashboardService dashboardService;
     @Autowired
     private UserService service;
     private final ContactService contactService;
@@ -102,6 +110,15 @@ public class RenoCraftController {
                 return "redirect:/signin";
             }
         }
+    @GetMapping ("/CollectionsProduits")
+    public String CollectionsPage(HttpServletRequest request){
+        HttpSession session = request.getSession();
+        if (session != null && session.getAttribute("connexion") != null && (boolean) session.getAttribute("connexion")) {
+            return "CollectionsProduits";
+        } else {
+            return "redirect:/signin";
+        }
+    }
 
     @PostMapping ("/cart")
     public String processCommande(@RequestParam("dateCommande") @DateTimeFormat(pattern = "yyyy-MM-dd") Date dateCommande,
@@ -251,9 +268,14 @@ public class RenoCraftController {
             return "redirect:/signin-error";
         }
     }
+   
 
     @GetMapping("/dashHome")
     public String getDashHome(HttpServletRequest request, Model model) {
+        model.addAttribute("nbrclients",dashboardService.getNombreClients());
+        model.addAttribute("nbrcommandes",dashboardService.getNombreCommandes());
+        model.addAttribute("nbremployes",dashboardService.getNombreEmployes());
+        model.addAttribute("nbrcontacts",dashboardService.getNombreContacts());
         HttpSession session = request.getSession();
         String user = (String) session.getAttribute("userName");
         model.addAttribute("userNameDash", user);
@@ -305,11 +327,44 @@ public class RenoCraftController {
         }
     }
 
-    
+    @GetMapping("/dashEmployeur")
+    public String getDashEmployeur(HttpServletRequest request, Model model) {
+        HttpSession session = request.getSession();
+        String user = (String) session.getAttribute("userName");
+        model.addAttribute("userNameDash", user);
+        if (session != null && session.getAttribute("connexion") != null && (boolean) session.getAttribute("connexion")&& user.equals("admin")) {
+            List<Employeur> employeurs = employeurService.getEmployeur();
+            model.addAttribute("employeurs", employeurs);
+            return "Dash/dashEmp";
+        } else {
+            return "redirect:/signin";
+        }
+    }
+
+
     @PostMapping("/suppUser")
+<<<<<<< HEAD
     public String deleteUserDash(@RequestParam("usernameparam") String usernameparam) {
         userService.deleteClient(usernameparam);
+=======
+    public String deleteUserDash(@RequestParam("username") String username) {
+        System.out.println("Deleting user with username: " + username);
+        userService.deleteClient(username);
+>>>>>>> ad028e689f2b47c71386162cfa9d623f1a7240ae
         return "redirect:/dashClient";
+    }
+    @GetMapping("/dashService")
+    public String getDashService(HttpServletRequest request, Model model) {
+        HttpSession session = request.getSession();
+        String user = (String) session.getAttribute("userName");
+        model.addAttribute("userNameDash", user);
+        if (session != null && session.getAttribute("connexion") != null && (boolean) session.getAttribute("connexion")&& user.equals("admin")) {
+            List<Service> services = serviceService.getService();
+            model.addAttribute("services", services);
+            return "Dash/dashService";
+        } else {
+            return "redirect:/signin";
+        }
     }
 
     @PostMapping("/updateFormUser")
