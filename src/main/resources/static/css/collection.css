@@ -72,9 +72,10 @@
     padding-right:30px;
     border-radius:10px;
 }
-.fa-solid {
+.unitt {
     margin-left:85%;
     font-size :30px;
     color:#ffffff;
     margin-top:20px;
+    cursor: pointer;
 }
