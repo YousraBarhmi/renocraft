@@ -8,4 +8,5 @@ import java.util.List;
 public interface PackService {
     public void addPack(Pack pack);
     public List<Pack> findPacksByIds(List<Long> packIds);
+    public List<Pack> selectPacks();
 }
