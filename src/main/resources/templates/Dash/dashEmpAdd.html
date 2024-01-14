@@ -2,14 +2,15 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <link rel="icon" th:href="@{images/logorenocraft.png}" />
+    <link rel="icon" th:href="@{/images/logorenocraft.png}" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="theme-color" content="#201F25" />
     <meta name="author" content="-YE- -JS- -YB-" />
     <meta name="description" content="Application JEE de Rénovation -RenoCraft-"/>
     <link rel="stylesheet" th:href="@{https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css}">
+    <script th:src="@{https://cdn.jsdelivr.net/npm/chart.js}"></script>
     <link rel="stylesheet" th:href="@{/css/sb-admin-2.css}" />
-    <link rel="stylesheet" th:href="@{/css/sb-admin-2.min.css}" />
+    <link rel="stylesheet" th:href="@{/css/sb-admin-2-min.css}" />
     <link rel="stylesheet" th:href="@{/css/all.min.css}" />
     <script th:src="@{https://code.jquery.com/jquery-3.5.1.slim.min.js}"></script>
     <script th:src="@{https://code.jquery.com/jquery-3.6.4.min.js}"></script>
@@ -19,7 +20,6 @@
     <script th:src="@{/js/demo/chart-bar-demo.js}"></script>
     <script th:src="@{/js/demo/chart-pie-demo.js}"></script>
     <script th:src="@{/js/demo/datatables-demo.js}"></script>
-    <script th:src="@{/js/demo/dataTables.bootstrap4.min.js}"></script>
     <title>DashBoard</title>
 </head>
 <body >
@@ -28,7 +28,7 @@
     <div id="content-wrapper" class="d-flex flex-column">
         <div id="content" style="padding-left: 18%">
             <div th:insert="~{DashFragments/navBar :: navBar}"></div>
-            <div th:insert="~{DashFragments/contactTable :: clienys}"></div>
+            <div th:insert="~{DashFragments/addEmployeur :: clienys}"></div>
             <div th:insert="~{DashFragments/footer :: footer}"></div>
         </div>
     </div>

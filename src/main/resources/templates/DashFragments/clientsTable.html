@@ -7,18 +7,21 @@
 <body>
 <div class="container-fluid" style=" padding-top: 8%;" th:fragment="clienys">
 
-  <!-- Page Heading -->
-  <h1 class="h3 mb-2 text-gray-800">Users</h1>
-  <p class="mb-4">La table "User" regroupe les informations individuelles des utilisateurs, comprenant des détails tels que les noms, adresses e-mail, et d'autres données pertinentes, facilitant la gestion et l'interaction avec les utilisateurs du site.</p>
+  <p style="visibility: hidden">La table "User" regroupe les informations individuelles des utilisateurs, comprenant des détails tels que les noms, adresses e-mail, et d'autres données pertinentes, facilitant la gestion et l'interaction avec les utilisateurs du site.</p>
 
   <!-- DataTales Example -->
   <div class="card shadow mb-4">
     <div class="card-header py-3">
-      <h6 class="m-0 font-weight-bold text-primary">User Information</h6>
+      <h6 class="m-1 font-weight-bold text-center" style="color: #201F25">Clients</h6>
     </div>
     <div class="card-body">
       <div class="table-responsive" th:if="${clients != null}">
+<<<<<<< HEAD
         <div id="dataTable_wrapper" class="dataTables_wrapper dt-bootstrap4"><div class="row"><div class="col-sm-12 col-md-6"><div class="dataTables_length" id="dataTable_length"></div></div><div class="col-sm-12 col-md-6"><div id="dataTable_filter" class="dataTables_filter"></div></div></div><div class="row"><div class="col-sm-12"><table class="table table-bordered dataTable" id="dataTable" width="100%" cellspacing="0" role="grid" aria-describedby="dataTable_info" style="width: 100%;">
+=======
+        <div class="col-sm-12 col-md-6"><div id="dataTable_filter" class="dataTables_filter"><label>Search:<input type="search" class="form-control form-control-sm" placeholder="" aria-controls="dataTable"></label></div></div></div>
+      <div class="row"><div class="col-sm-12"><table class="table table-bordered dataTable" id="dataTable" width="100%" cellspacing="0" role="grid" aria-describedby="dataTable_info" style="width: 100%;">
+>>>>>>> 3da7171288af6fbc32d1b643c9e688e692aa919d
           <thead>
           <tr role="row">
             <th class="sorting sorting_asc" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Name: activate to sort column descending" >Nom</th>
