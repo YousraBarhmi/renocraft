@@ -231,19 +231,12 @@ public class RenoCraftController {
     }
 
     @PostMapping("/profil")
-    public String editProfile(@ModelAttribute("profil") User updatedUser) {
-        // Perform the user profile update
-        boolean editSuccessful = userService.editUser(updatedUser);
-
-        if (editSuccessful) {
-            System.out.println("yes");
-            // Redirect to the profile page with a success message
-            return "redirect:/profil?success";
-        } else {
-            // Redirect to the profile page with an error message
-            System.out.println("no");
-            return "redirect:/profil?error";
-        }
+    public String updateFormClient(@RequestParam("name") String name,
+                                   @RequestParam("usernamechamp") String usernamechamp,
+                                   @RequestParam("email") String email,
+                                   @RequestParam("phone") String phone) {
+        userService.updateUser(usernamechamp, name, email, phone);
+        return "redirect:/home";
     }
 
     @GetMapping("/signin")
@@ -271,7 +264,7 @@ public class RenoCraftController {
             return "redirect:/signin-error";
         }
     }
-   
+
 
     @GetMapping("/dashHome")
     public String getDashHome(HttpServletRequest request, Model model) {
@@ -325,11 +318,13 @@ public class RenoCraftController {
         }
     }
     @GetMapping("/updateClient")
-    public String getUpClient(HttpServletRequest request, Model model) {
+    public String getUpClient(HttpServletRequest request, Model model,@RequestParam("userparam") String userparam) {
         HttpSession session = request.getSession();
         String user = (String) session.getAttribute("userName");
         model.addAttribute("userNameDash", user);
         if (session != null && session.getAttribute("connexion") != null && (boolean) session.getAttribute("connexion")&& user.equals("admin")) {
+            Optional<User> userModif = userService.getUser(userparam);
+            model.addAttribute("userModif", userModif);
             return "Dash/dashClientUpdate";
         } else {
             return "redirect:/signin";
@@ -366,11 +361,144 @@ public class RenoCraftController {
 
 
     @PostMapping("/suppUser")
-    public String deleteUserDash(@RequestParam("username") String username) {
-        System.out.println("Deleting user with username: " + username);
-        userService.deleteClient(username);
+    public String deleteUserDash(@RequestParam("usernameparam") String usernameparam) {
+        userService.deleteClient(usernameparam);
         return "redirect:/dashClient";
     }
+    @GetMapping("/dashService")
+    public String getDashService(HttpServletRequest request, Model model) {
+        HttpSession session = request.getSession();
+        String user = (String) session.getAttribute("userName");
+        model.addAttribute("userNameDash", user);
+        if (session != null && session.getAttribute("connexion") != null && (boolean) session.getAttribute("connexion")&& user.equals("admin")) {
+            List<Service> services = serviceService.getService();
+            model.addAttribute("services", services);
+            return "Dash/dashService";
+        } else {
+            return "redirect:/signin";
+        }
+    }
+
+    @PostMapping("/updateFormUser")
+    public String updateFormUserMeth(@RequestParam("name") String name,
+                                     @RequestParam("usernamechamp") String usernamechamp,
+                                     @RequestParam("email") String email,
+                                     @RequestParam("phone") String phone) {
+        userService.updateUser(usernamechamp, name, email, phone);
+        return "redirect:/dashClient";
+    }
+
+    @GetMapping("/dashContact")
+    public String getDashContact(HttpServletRequest request, Model model) {
+        HttpSession session = request.getSession();
+        String user = (String) session.getAttribute("userName");
+        model.addAttribute("userNameDash", user);
+        if (session != null && session.getAttribute("connexion") != null && (boolean) session.getAttribute("connexion")&& user.equals("admin")) {
+            List<Contact> contacts = contactService.getContact();
+            int size = contactService.contactSize();
+            model.addAttribute("contacts", contacts);
+            model.addAttribute("size", size);
+            return "Dash/dashContact";
+        } else {
+            return "redirect:/signin";
+        }
+    }
+
+    @GetMapping("/updateService")
+    public String getUpService(HttpServletRequest request, Model model,@RequestParam("userparam") Long id) {
+        HttpSession session = request.getSession();
+        String user = (String) session.getAttribute("userName");
+        model.addAttribute("userNameDash", user);
+        if (session != null && session.getAttribute("connexion") != null && (boolean) session.getAttribute("connexion")&& user.equals("admin")) {
+            Optional<Service> serviceModif = serviceService.getServiceById(id);
+            model.addAttribute("serviceModif", serviceModif);
+            return "Dash/dashServiceUpdate";
+        } else {
+            return "redirect:/signin";
+        }
+    }
+    @PostMapping("/updateFormService")
+    public String updateFormServiceMeth(@RequestParam("name") String nom,
+                                        @RequestParam("description") String description,
+                                        @RequestParam("id_service") Long service_id) {
+        serviceService.updateService(service_id, nom, description);
+        return "redirect:/dashService";
+    }
+
+    @GetMapping("/updateEmployeur")
+    public String getUpEmp(HttpServletRequest request, Model model,@RequestParam("userparam") Long id) {
+        HttpSession session = request.getSession();
+        String user = (String) session.getAttribute("userName");
+        model.addAttribute("userNameDash", user);
+        if (session != null && session.getAttribute("connexion") != null && (boolean) session.getAttribute("connexion")&& user.equals("admin")) {
+            Optional<Employeur> empModif = employeurService.getEmployeurById(id);
+            model.addAttribute("empModif", empModif);
+            return "Dash/dashEmpUpdate";
+        } else {
+            return "redirect:/signin";
+        }
+    }
+    @PostMapping("/updateFormEmp")
+    public String updateFormEmpMeth(@RequestParam("name") String nom,
+                                        @RequestParam("prenom") String prenom,
+                                        @RequestParam("id_employeur") Long id_employeur,
+                                        @RequestParam("numero") String numero,
+                                        @RequestParam("ville") String ville,
+                                        @RequestParam("service") Long service) {
+        employeurService.updateEmployeur(id_employeur, nom, prenom,numero,ville ,service );
+        return "redirect:/dashEmployeur";
+    }
+    @PostMapping("/suppEmp")
+    public String deleteEmpDash(@RequestParam("usernameparam") Long id) {
+        employeurService.deleteEmp(id);
+        return "redirect:/dashEmployeur";
+    }
+
+    @GetMapping("/addEmployeur")
+    public String getAddEmp(HttpServletRequest request, Model model) {
+        HttpSession session = request.getSession();
+        String user = (String) session.getAttribute("userName");
+        model.addAttribute("userNameDash", user);
+        if (session != null && session.getAttribute("connexion") != null && (boolean) session.getAttribute("connexion")&& user.equals("admin")) {
+            return "Dash/dashEmpAdd";
+        } else {
+            return "redirect:/signin";
+        }
+    }
+    @PostMapping("/addFormEmp")
+    public String addFormEmpMeth(@RequestParam("name") String nom,
+                                 @RequestParam("prenom") String prenom,
+                                 @RequestParam("numero") String numero,
+                                 @RequestParam("ville") String ville,
+                                 @RequestParam("service") Long id_service) {
+        employeurService.addEmployeur(nom, prenom, numero, ville, id_service);
+        return "redirect:/dashEmployeur";
+    }
+
+
+    @GetMapping("/updateAdmin")
+    public String updateAdminPage(HttpServletRequest request, Model model) {
+        HttpSession session = request.getSession();
+        if (session != null && session.getAttribute("connexion") != null && (boolean) session.getAttribute("connexion")) {
+            String user = (String) session.getAttribute("userName");
+            Optional<User> updateAdmin = userService.getUser(user);
+            model.addAttribute("updateAdmin", updateAdmin);
+            model.addAttribute("userNameDash",user);
+            return "Dash/dashProfile";
+        } else {
+            return "redirect:/signin";
+        }
+    }
+
+    @PostMapping("/updateAdmin")
+    public String updateFormAdmin(@RequestParam("name") String name,
+                                     @RequestParam("usernamechamp") String usernamechamp,
+                                     @RequestParam("email") String email,
+                                     @RequestParam("phone") String phone) {
+        userService.updateUser(usernamechamp, name, email, phone);
+        return "redirect:/dashHome";
+    }
+
 
 
 

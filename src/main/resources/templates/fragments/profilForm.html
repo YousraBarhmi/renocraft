@@ -14,7 +14,7 @@
           <img th:src="@{/images/Camera.png}" alt="photo.png">
         </div>
       </div>
-      <form>
+      <form class="forms-sample" th:action="@{/profil}" method="post" th:object="${profil}">
         <div class="inp">
           <div class="lab">
             <label for="name">Nom : </label>
@@ -23,9 +23,11 @@
         </div>
         <div class="inp">
           <div class="lab">
-            <label for="userName">Nom d'Utilisateur :</label>
+            <label for="username">Nom d'Utilisateur :</label>
           </div>
-          <input type="text" id="userName" th:value="${profil.get().getUsername()}" name="username" disabled required/><br/>
+          <input type="hidden" name="usernamechamp" th:value="${profil.get().getUsername()}" />
+          <input type="text" class="form-control" id="username" disabled th:value="${profil.get().getUsername()}"/>
+          <!--<input type="text" id="usernamechamp" th:value="${profil.get().getUsername()}" name="usernamechamp" disabled required/><br/>-->
         </div>
         <div class="inp">
           <div class="lab">
@@ -38,7 +40,10 @@
           <div class="lab">
             <label for="email">Gmail :</label>
           </div>
-          <input type="email" id="email" placeholder="Adresse Email" th:value="${profil.get().getEmail()}" name="email" disabled required/><br/>
+          <input type="email" class="form-control" name="email" id="email" required th:value="${profil.get().getEmail()}"/>
+        </div>
+        <div >
+          <button type="submit" class="modifCl" >Modifier</button>
         </div>
       </form>
     </div>
