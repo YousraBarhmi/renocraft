@@ -43,3 +43,10 @@
     width: 35%;
     margin: 0;
 }
+
+.profil button {
+    padding: 5px; background: #201F25;color: white;
+}
+.profil button:hover {
+    background: white;color: #201F25;border: 1px solid #201F25;
+}

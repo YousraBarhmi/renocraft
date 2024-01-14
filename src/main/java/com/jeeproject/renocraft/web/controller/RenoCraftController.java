@@ -228,19 +228,12 @@ public class RenoCraftController {
     }
 
     @PostMapping("/profil")
-    public String editProfile(@ModelAttribute("profil") User updatedUser) {
-        // Perform the user profile update
-        boolean editSuccessful = userService.editUser(updatedUser);
-
-        if (editSuccessful) {
-            System.out.println("yes");
-            // Redirect to the profile page with a success message
-            return "redirect:/profil?success";
-        } else {
-            // Redirect to the profile page with an error message
-            System.out.println("no");
-            return "redirect:/profil?error";
-        }
+    public String updateFormClient(@RequestParam("name") String name,
+                                   @RequestParam("usernamechamp") String usernamechamp,
+                                   @RequestParam("email") String email,
+                                   @RequestParam("phone") String phone) {
+        userService.updateUser(usernamechamp, name, email, phone);
+        return "redirect:/home";
     }
 
     @GetMapping("/signin")
@@ -268,7 +261,7 @@ public class RenoCraftController {
             return "redirect:/signin-error";
         }
     }
-   
+
 
     @GetMapping("/dashHome")
     public String getDashHome(HttpServletRequest request, Model model) {
@@ -480,5 +473,7 @@ public class RenoCraftController {
         userService.updateUser(usernamechamp, name, email, phone);
         return "redirect:/dashHome";
     }
+
+
 
 }
