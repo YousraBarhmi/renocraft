@@ -16,6 +16,7 @@ import jakarta.servlet.http.HttpServletRequest;
 
 import com.jeeproject.renocraft.entity.User;
 import com.jeeproject.renocraft.service.UserService;
+import com.jeeproject.renocraft.service.CommandePackService;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -36,6 +37,8 @@ public class RenoCraftController {
     private  DashboardService dashboardService;
     @Autowired
     private UserService service;
+    @Autowired
+    private  CommandePackService commandepackService;
     private final ContactService contactService;
     private final EmployeurService employeurService;
     private final ServiceService serviceService;
@@ -272,6 +275,19 @@ public class RenoCraftController {
 
     @GetMapping("/dashHome")
     public String getDashHome(HttpServletRequest request, Model model) {
+        String currentMonth = getCurrentMonth();
+        String previousMonth = getPreviousMonth();
+
+        long commandesMoisActuel = commandeService.getCommandesByMonth("01");
+        long commandesMoisPrecedent = commandeService.getCommandesByMonth("12");
+        List<Object[]> statistics = commandepackService.getTopPacksStatistics();
+        model.addAttribute("statistics", statistics);
+
+        // Ajoutez les statistiques au modèle pour les rendre disponibles dans la vue
+        model.addAttribute("commandesMoisActuel", commandesMoisActuel);
+        model.addAttribute("commandesMoisPrecedent", commandesMoisPrecedent);
+
+
         model.addAttribute("nbrclients",dashboardService.getNombreClients());
         model.addAttribute("nbrcommandes",dashboardService.getNombreCommandes());
         model.addAttribute("nbremployes",dashboardService.getNombreEmployes());
@@ -284,6 +300,15 @@ public class RenoCraftController {
         } else {
             return "redirect:/signin";
         }
+    }
+    private String getCurrentMonth() {
+        // Logique pour obtenir le mois actuel (vous pouvez utiliser LocalDate pour obtenir le mois actuel)
+        return "2024-01"; // Remplacez cela par la logique réelle
+    }
+
+    private String getPreviousMonth() {
+        // Logique pour obtenir le mois précédent (vous pouvez utiliser LocalDate pour obtenir le mois précédent)
+        return "2023-12"; // Remplacez cela par la logique réelle
     }
 
     @GetMapping("/dashClient")
@@ -346,6 +371,7 @@ public class RenoCraftController {
         userService.deleteClient(username);
         return "redirect:/dashClient";
     }
+
 
 
 }

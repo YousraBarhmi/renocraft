@@ -16,4 +16,9 @@ public class CommandeServiceImp implements CommandeService{
     public void addCommande(Commande commande){
         commandeRepo.save(commande);
     }
+    @Override
+    public long getCommandesByMonth(String month) {
+
+        return commandeRepo.countByMonth(month);
+    }
 }
