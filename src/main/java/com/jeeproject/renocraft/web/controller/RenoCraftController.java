@@ -458,5 +458,27 @@ public class RenoCraftController {
     }
 
 
+    @GetMapping("/updateAdmin")
+    public String updateAdminPage(HttpServletRequest request, Model model) {
+        HttpSession session = request.getSession();
+        if (session != null && session.getAttribute("connexion") != null && (boolean) session.getAttribute("connexion")) {
+            String user = (String) session.getAttribute("userName");
+            Optional<User> updateAdmin = userService.getUser(user);
+            model.addAttribute("updateAdmin", updateAdmin);
+            model.addAttribute("userNameDash",user);
+            return "Dash/dashProfile";
+        } else {
+            return "redirect:/signin";
+        }
+    }
+
+    @PostMapping("/updateAdmin")
+    public String updateFormAdmin(@RequestParam("name") String name,
+                                     @RequestParam("usernamechamp") String usernamechamp,
+                                     @RequestParam("email") String email,
+                                     @RequestParam("phone") String phone) {
+        userService.updateUser(usernamechamp, name, email, phone);
+        return "redirect:/dashHome";
+    }
 
 }
