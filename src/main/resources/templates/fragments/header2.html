@@ -6,9 +6,9 @@
 </head>
 <body>
 <div class="container" th:fragment="header">
-  <div class="icone">
+  <a th:href="@{/home}" class="icone">
     <img th:src="@{images/whitelogorenocraft.png}" alt="logorenocraft.png">
-  </div>
+  </a>
   <div class="links">
     <ul>
       <li><a class="link" th:href="@{/home}">Accueil</a></li>
