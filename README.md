@@ -1,4 +1,4 @@
-# Rénocaft
+# Renocaft
 
 ## Introduction
 Le projet "Rénovation Simplifiée", ou Rénocaft, est une plateforme web conçue pour simplifier les projets de rénovation. Cette solution intégrée vise à surmonter les défis majeurs rencontrés par les personnes engagées dans des projets de rénovation en leur offrant une interface conviviale et des fonctionnalités intuitives.
